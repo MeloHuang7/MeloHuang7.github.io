@@ -154,12 +154,6 @@
         </div> -->
         <div id="nav-right">
             
-    <div class="nav-button only-home" id="travellings_button">
-        <a class="site-page"  target="_blank" rel="noopener external nofollow" href="https://www.travellings.cn/go.html" title="开往-友链接力"  width="120">
-            <i class="fa-solid fa-train-subway" style="font-size: 1rem;"></i>
-        </a>
-    </div>
-
 
     <div class="nav-button" id="randomPost_button">
         <a class="site-page" onclick="toRandomPost()"
@@ -195,6 +189,185 @@
 </header>
                 <div id="home_top">
     
+    
+        <div class="recent-top-post-group" id="recent-top-post-group">
+    <div class="recent-post-top" id="recent-post-top">
+        <div id="bannerGroup">
+            <div id="banners">
+                <div class="banners-title">
+    <div class="banners-title-big">
+        分享设计<br>与科技生活
+    </div>
+    <div class="banners-title-small">
+        /
+    </div>
+</div>
+<div class="tags-group-all">
+    <div class="tags-group-wrapper">
+        
+            
+                
+                
+                    <div class="tags-group-icon-pair">
+                    
+                    <div class="tags-group-icon" style="background: #57b6e6">
+                        <img src="/img/icon/docker.png" title="Docker">
+                    </div>
+                
+            
+                
+                    
+                    <div class="tags-group-icon" style="background: #ffffff">
+                        <img src="/img/icon/Python.webp" title="Python">
+                    </div>
+                
+                    </div>
+                
+            
+                
+                
+                    <div class="tags-group-icon-pair">
+                    
+                    <div class="tags-group-icon" style="background: #2c51db">
+                        <img src="/img/icon/CSS3.webp" title="CSS3">
+                    </div>
+                
+            
+                
+                    
+                    <div class="tags-group-icon" style="background: #f7cb4f">
+                        <img src="/img/icon/JS.webp" title="JS">
+                    </div>
+                
+                    </div>
+                
+            
+                
+                
+                    <div class="tags-group-icon-pair">
+                    
+                    <div class="tags-group-icon" style="background: #df5b40">
+                        <img src="/img/icon/git.webp" title="Git">
+                    </div>
+                
+                    </div>
+                
+               
+        
+            
+                
+                
+                    <div class="tags-group-icon-pair">
+                    
+                    <div class="tags-group-icon" style="background: #57b6e6">
+                        <img src="/img/icon/docker.png" title="Docker">
+                    </div>
+                
+            
+                
+                    
+                    <div class="tags-group-icon" style="background: #ffffff">
+                        <img src="/img/icon/Python.webp" title="Python">
+                    </div>
+                
+                    </div>
+                
+            
+                
+                
+                    <div class="tags-group-icon-pair">
+                    
+                    <div class="tags-group-icon" style="background: #2c51db">
+                        <img src="/img/icon/CSS3.webp" title="CSS3">
+                    </div>
+                
+            
+                
+                    
+                    <div class="tags-group-icon" style="background: #f7cb4f">
+                        <img src="/img/icon/JS.webp" title="JS">
+                    </div>
+                
+                    </div>
+                
+            
+                
+                
+                    <div class="tags-group-icon-pair">
+                    
+                    <div class="tags-group-icon" style="background: #df5b40">
+                        <img src="/img/icon/git.webp" title="Git">
+                    </div>
+                
+                    </div>
+                
+               
+            
+    </div>
+</div>
+<a id="banner-hover" onclick="toRandomPost()" data-pjax-state="">
+    <span class="bannerText">随便逛逛</span>
+    <i class="fas fa-arrow-right banner-righticon"></i>
+</a>
+            </div>
+            <div class="categoryGroup">
+                <div class="categoryItem" style="box-shadow: var(--heo-shadow-blue);"><a class="categoryButton CB1 bikan"
+        href="/tags/Acrylic/">
+        <span class="categoryButtonText">Acrylic</span>
+        <i class="fas fa-dove"></i>
+    </a>
+</div>
+<div class="categoryItem" style="box-shadow: var(--heo-shadow-red);">
+    <a class="categoryButton remen" href="/tags/%E7%83%AD%E9%97%A8/">
+        <span class="categoryButtonText">热门文章</span>
+        <i class="fas fa-burn"></i>
+    </a>
+</div>
+<div class="categoryItem" style="box-shadow: var(--heo-shadow-green);">
+    <a class="categoryButton shiyong"
+        href="/tags/%E6%95%99%E7%A8%8B/">
+        <span class="categoryButtonText">实用教程</span>
+        <i class="fas fa-book"></i>
+    </a>
+</div>
+            </div>
+        </div>
+        <div class="topGroup">
+            <style type="text/css">
+    .topGroup .todayCard::after {
+        box-shadow: 0 -109px 133px -9px #006a73 inset;
+    }
+
+    .todayCard-title,
+    .todayCard-tips,
+    .topGroup .banner-button {
+        color: #ffffff;
+    }
+
+    .topGroup .todayCard {
+        background: #006a73;
+    }
+</style>
+
+<div class="todayCard" id="todayCard" onclick="pjax.loadUrl('https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic')"
+    style="z-index: 1;">
+    <div class="todayCard-info">
+        <div class="todayCard-tips">Hexo Theme</div>
+        <div class="todayCard-title">让Acrylic成为您的博客主题</div>
+    </div>
+    <div class="todayCard-cover nolazyload"
+        style="background: url('/img/acrylic.png') no-repeat center /cover">
+    </div>
+    <div class="banner-button-group"><a class="banner-button"
+            onclick="window.event.cancelBubble=true;acrylic.hideTodayCard();">
+            <i class="fas fa-circle-plus"></i>
+            <span class="banner-button-text">更多推荐</span>
+        </a>
+    </div>
+</div>
+        </div>
+    </div>
+</div>
     
 </div>
 <main class="layout" id="content-inner">
@@ -401,6 +574,22 @@
     
     
         
+            <div class="webinfo-item">
+                <div class="webinfo-item-title">
+                    <i class="fa-solid fa-fire"></i>
+                    <div class="item-name">总访问数 :</div>
+                </div>
+                <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-pulse"></i></span>
+            </div>
+        
+        
+            <div class="webinfo-item">
+                <div class="webinfo-item-title">
+                    <i class="fa-solid fa-eye"></i>
+                    <div class="item-name">总访客数 :</div>
+                </div>
+                <span id="busuanzi_value_site_uv"><i class="fas fa-spinner fa-pulse"></i></span>
+            </div>
         
     
     
@@ -413,6 +602,15 @@
             </div>
         </div>
     
+    
+        <div class="webinfo-item">
+            <div class="webinfo-item-title">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <div class="item-name">最后更新 :</div>
+            </div>
+            <time class="item-count" datetime="Thu Jul 20 2023 17:13:15 GMT+0800 (中国标准时间)">
+            </time>
+        </div>
     
     
 </div>
@@ -427,6 +625,10 @@
     
         <a class="deal_link" target="_blank" href="https://github.com/ToughMamba" rel="external nofollow noopener" title="Github">
             <i class="fa-brands fa-github"></i>
+        </a>
+    
+        <a class="deal_link" href="/AboutMe/index.html" rel="external nofollow" title="Mail">
+            <i class="fa-solid fa-envelope"></i>
         </a>
     
     <img class="footer_mini_logo" src="/img/avatar.webp"
@@ -514,6 +716,8 @@
 
 <div id="js-pjax">
     
+    
+        <script async src="https://npm.elemecdn.com/penndu@1.0.0/bsz.js"></script>
      
 </div>
 
