@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>如何在hexo中上传博客笔记 | Melo&#39;s Blog</title>
+<title>Django学习笔记-1 | Melo&#39;s Blog</title>
 <noscript>开启Javascript是必要的</noscript>
 <link rel="icon" type="image/x-icon" href="/img/avatar.webp">
 <link rel="apple-touch-icon" href="/img/avatar.webp">
@@ -35,7 +35,7 @@
 
 
 
-<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-7-1 18:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":true,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":true,"comment":{"enable":true,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-7-1 18:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":true,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":true,"comment":{"enable":true,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":true};</script>
     <meta name="generator" content="Hexo 6.3.0"></head>
     <body id="body">
         
@@ -159,7 +159,7 @@
         </div>
         <div id="page-name-mask">
             <div id="page-name">
-                <a id="page-name-text" onclick="acrylic.toTop()">如何在hexo中上传博客笔记</a>
+                <a id="page-name-text" onclick="acrylic.toTop()">Django学习笔记-1</a>
             </div>
         </div>
         <div id="menus">
@@ -207,7 +207,7 @@
 </nav>
     
         <div class="coverdiv" id="coverdiv">
-    <img id="post-cover" class="nolazyload" src="/medias/hexo.jpg" alt="cover">
+    <img id="post-cover" class="nolazyload" src="/img/hello.jpg" alt="cover">
 </div>
 <div id="post-info">
     <div id="post-firstinfo">
@@ -219,21 +219,21 @@
             <div class="tag_share">
                 <div class="post-meta__tag-list">
                     
-                        <a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">
+                        <a class="post-meta__tags" href="/tags/Django/">
                             <span class="tags-punctuation">#</span>
-                            <span class="tags-name">学习</span>
+                            <span class="tags-name">Django</span>
                         </a>
                     
                 </div>
             </div>
         </div>
     </div>
-    <h1 class="post-title">如何在hexo中上传博客笔记</h1>
+    <h1 class="post-title">Django学习笔记-1</h1>
     <div id="post-meta">
         <div class="meta-secondline">
             <span class="post-meta-date" title="发布于">
                 <i class="post-meta-icon fa-fw fas fa-calendar"></i>
-                <time datetime="2023-07-06T15:31:56+08:00"></time>
+                <time datetime="2023-10-04T00:23:51+08:00"></time>
             </span>
             
             
@@ -268,13 +268,49 @@
                 <main class="layout" id="content-inner">
     <div id="post">
         <article class="post-content" id="article-container">
-            <h2 id="本地创建一篇博客文件"><a href="#本地创建一篇博客文件" class="headerlink" title="本地创建一篇博客文件"></a>本地创建一篇博客文件</h2><p><strong>在命令行中输入</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo new <span class="string">&quot;my_blog_name&quot;</span></span></span><br></pre></td></tr></table></figure>
-<p><strong>其中,”my_blog_name”为博客文件的文件名</strong><br><img src="https://cdn.jsdelivr.net/gh/ToughMamba/PicRepo@main/hexo_write.png" alt="注意文件相对位置在./source中"></p>
-<h2 id="编辑Markdown文件"><a href="#编辑Markdown文件" class="headerlink" title="编辑Markdown文件"></a>编辑Markdown文件</h2><p><code>Markdown是一种在程序员之间广为流传的标记语言，给了程序员们一种优雅的方式来写笔记，博客，技术文档</code><br><code>除此之外，Markdown还十分简单易学，不到半个小时便可上手</code><br>Markdown学习地址:<br><a><a target="_blank" rel="noopener" href="https://markdown.com.cn/">https://markdown.com.cn/</a></a></p>
-<h2 id="合成hexo静态网页"><a href="#合成hexo静态网页" class="headerlink" title="合成hexo静态网页"></a>合成hexo静态网页</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$</span><span class="language-bash">hexo generate</span></span><br><span class="line">//或者是$hexo g</span><br></pre></td></tr></table></figure>
-<h2 id="部署到服务器"><a href="#部署到服务器" class="headerlink" title="部署到服务器"></a>部署到服务器</h2><p><del>这里我用的是git page，所以直接在git中运行，不是用这种方法的可以忽略</del></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$</span><span class="language-bash">hexo deploy</span></span><br><span class="line">//或者$hexo d</span><br></pre></td></tr></table></figure>
+            <h1 id="Django学习笔记"><a href="#Django学习笔记" class="headerlink" title="Django学习笔记"></a>Django学习笔记</h1><blockquote>
+<p>参考书籍:《Django 3 By Example Build powerful and reliable Python web applications from scratch》<br>Django 基础教程 by Leif Azzopardi  David Maxwell (z-lib.org)(中译版)</p>
+</blockquote>
+<h2 id="为什么要学Django"><a href="#为什么要学Django" class="headerlink" title="为什么要学Django?"></a>为什么要学Django?</h2><p>Django是一个强大的Python Web开发的后端框架,优势在于简单，简洁，适合任何人上手，随着你深入学习Django，你会对此深有体会</p>
+<hr>
+<p><strong>下面,我们开始学习,记得坚持</strong></p>
+<h2 id="第一个Django项目-startproject"><a href="#第一个Django项目-startproject" class="headerlink" title="第一个Django项目:startproject"></a>第一个Django项目:startproject</h2><p>在安装好Python，并用pip下载最新版本Django(注意Python版本和Django版本要兼容)后，使用：</p>
+<blockquote>
+<p>django-admin startproject tango_with_django_project<br>建立了第一个文件，<strong>django-admin startproject</strong>是创建Django项目的命令，后面的是<strong>项目名称</strong><br>创建完后，项目目录中有个名为 manage.py 的文件，在开发过程中时常用到。它提供了一系列维护 Django 项目的命令，例如通过它可以运行内置的 Django 开发服务器，可以测试应用，还可以运行多个数据库命令。几乎每个 Django 命令都要调用这个脚本。<br>在另一个文件夹(即项目代码文件夹)下，有这么几个文件:</p>
+</blockquote>
+<ul>
+<li><em>init</em>.py:一个空 Python 脚本，存在的目的是告诉 Python 解释器，这个目录是一个Python包</li>
+<li>settings.py：存放 Django 项目的所有配置</li>
+<li>urls.py：存放项目的 URL 模式</li>
+<li>wsgi.py：用于运行开发服务器和把项目部署到生产环境的一个 Python 脚本。<br>执行指令，来看一下本地的Django轻量级服务器是什么样的<blockquote>
+<p>python manage.py runserver<br>这里你会遇到报错，但没关系，跟着提示的指令，从而应用迁移(跟数据库有关，后面再说)<br>点开返回的地址+端口<br>**看到小火箭了吗?**你也可以通过一些指令使同一局域网或者远程的同伴一起来观看</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="startapp"><a href="#startapp" class="headerlink" title="startapp"></a>startapp</h2><p>运行命令</p>
+<blockquote>
+<p>python manage.py startapp rango<br>startapp 目录在项目的<strong>根目录</strong>(也就是manage.py所在的目录)中创建一个新目录，这个目录名为 rango，其中包含一些 Python 脚本</p>
+</blockquote>
+<ul>
+<li><strong>init</strong>.py：与前面那个的作用完全一样</li>
+<li>admin.py：注册模型，让 Django 为你创建管理界面</li>
+<li>apps.py：当前应用的配置</li>
+<li>models.py：存放应用的数据模型，即数据的实体及其之间的关系</li>
+<li>tests.py：存放测试应用代码的函数</li>
+<li>views.py：存放处理请求并返回响应的函数</li>
+<li>migrations 目录：存放与模型有关的数据库信息<br>views.py 和 models.py 是任何应用中都有的两个文件，是 Django 所采用的设计模式<strong>“模型-视图<br>-模板”</strong>的主要部分。<br>为了让Django项目知道这个app的存在，这里在startproject命令创造的那个子文件夹的setting.py中修改<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line"><span class="string">&#x27;django.contrib.admin&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;django.contrib.auth&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;django.contrib.contenttypes&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;django.contrib.sessions&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;django.contrib.messages&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;django.contrib.staticfiles&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;rango&#x27;</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+当然,Django是个非常人性化的后端框架，有时候也会自动追加到INSTALLED_APPS中，这时候就不必手动了</li>
+</ul>
+<h2 id="编写视图"><a href="#编写视图" class="headerlink" title="编写视图"></a>编写视图</h2><p>视图有模型和模板，这里我们先尝试用视图返回一些简单文本</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#edit in rango/views.py</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">&quot;Rango says hey there partner! &lt;br/&gt; &lt;a href=&#x27;/rango/about&#x27;&gt;About&lt;/a&gt;&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">about</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">&quot;Rango says here is the about page. &lt;br/&gt; &lt;a href=&#x27;/rango/&#x27;&gt;Index&lt;/a&gt;&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>这里index,about两个函数分别返回两个HttpResponse对象,里面包含一个指向某一页面的链接<br>那么，如何实现文本返回呢?或者说如何触发他们？(类似于Qt的信号槽和js的listener)</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#edit in project/urls.py</span></span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> include, path</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> rango <span class="keyword">import</span> views</span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment">#将以rango/ 为开头的url交给rango应用处理</span></span><br><span class="line">    path(<span class="string">&#x27;rango/&#x27;</span>, include(<span class="string">&#x27;rango.urls&#x27;</span>)),</span><br><span class="line">    path(<span class="string">&quot;admin/&quot;</span>, admin.site.urls),</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#edit in rango/urls.py</span></span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> rango <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment">#只要匹配到&quot;rango/ &quot;空字符串，就会调用views.index()视图函数</span></span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, views.index, name=<span class="string">&#x27;index&#x27;</span>),</span><br><span class="line">    path(<span class="string">&#x27;about/&#x27;</span>, views.about, name=<span class="string">&#x27;about&#x27;</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>这两段代码实现了这一功能，包括:</p>
+<ul>
+<li>利用url统一资源定位符进行视图管理,在第一段代码中，我们用urlpatterns中的path约束了<strong>admin开头的,跳转到admin.site.urls;而rango开头的统一由rango.urls管理(即是</strong>include(‘rango.urls’)**)</li>
+<li>触发views.py视图中的函数,第二段代码中以rango&#x2F;为结尾的调用views.index,以rango&#x2F;about结尾的调用views.about</li>
+</ul>
 
         </article>
         <div class="post-tools" id="post-tools">
@@ -287,18 +323,18 @@
         </div>
         <div class="share-main">
             <div class="share-main-all">
-                <div id="qrcode" title="https://melohuang7.github.io/2023/07/06/how-to-write-in-hexo/">
+                <div id="qrcode" title="https://melohuang7.github.io/2023/10/04/Django-one/">
                 </div>
                 <div class="reward-dec">使用手机访问这篇文章</div>
             </div>
         </div>
         <script type="text/javascript">
-            new QRCode(document.getElementById("qrcode"), "https://melohuang7.github.io/2023/07/06/how-to-write-in-hexo/");
+            new QRCode(document.getElementById("qrcode"), "https://melohuang7.github.io/2023/10/04/Django-one/");
         </script>
     </div>
 </div>
                 <div class="share-link weibo"><a class="share-button" target="_blank"
-    href="https://service.weibo.com/share/share.php?title=如何在hexo中上传博客笔记&amp;url=https://melohuang7.github.io/2023/07/06/how-to-write-in-hexo/&amp;pic=/medias/hexo.jpg"
+    href="https://service.weibo.com/share/share.php?title=Django学习笔记-1&amp;url=https://melohuang7.github.io/2023/10/04/Django-one/&amp;pic=/img/hello.jpg"
     title="分享到微博" rel="noopener external nofollow noreferrer noopener">
     <i class="fab fa-weibo" style="font-size:22px"></i>
 </a>
@@ -313,10 +349,10 @@
                 <div class="tag_share">
                     <div class="post-meta__tag-list">
                         
-                            <a href="/tags/%E5%AD%A6%E4%B9%A0/" class="post-meta__tags">
+                            <a href="/tags/Django/" class="post-meta__tags">
                                 <span class="tags-punctuation">#</span>
-                                学习
-                                <span class="tagsPageCount">2</span>
+                                Django
+                                <span class="tagsPageCount">1</span>
                             </a>
                         
                     </div>
@@ -327,12 +363,12 @@
     <div class="post-copyright__author">
         <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
         <a class="post-copyright-title" href="#">
-            <span>如何在hexo中上传博客笔记</span>
+            <span>Django学习笔记-1</span>
         </a>
     </div>
     <div class="post-copyright__type">
         <span class="post-copyright-info" id="post-copyright-url">
-            <a href="/2023/07/06/how-to-write-in-hexo/">https://melohuang7.github.io/2023/07/06/how-to-write-in-hexo/</a>
+            <a href="/2023/10/04/Django-one/">https://melohuang7.github.io/2023/10/04/Django-one/</a>
         </span>
         <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
             <i class="fas fa-paste copy-btn"></i>
@@ -346,24 +382,46 @@
 </div>
         <nav class="pagination-post" id="pagination">
     
-        <div class="prev-post pull-left">
-            <a href="/2023/09/05/java-note/">
-                <div class="pagination-info">
-                    <div class="label">上一篇</div>
-                    <div class="prev_info">Java学习笔记1-从C艹到jvav</div>
-                </div>
-            </a>
-        </div>
-        <div class="next-post pull-right">
-            <a href="/2023/07/01/hello-world/">
-                <div class="pagination-info">
-                    <div class="label">下一篇</div>
-                    <div class="next_info">Hello World</div>
-                </div>
-            </a>
-        </div>
+        
+            <div class="next-post pull-full">
+                <a href="/2023/09/05/java-note/">
+                    <div class="pagination-info">
+                        <div class="label">下一篇</div>
+                        <div class="next_info">Java学习笔记1-从C艹到jvav</div>
+                    </div>
+                </a>
+            </div>
+                
+        
     
 </nav>
+        
+            <div id="post-comment">
+    <div class="comment-head">
+        <div class="comment-headline">
+            <i class="fas fa-message fa-fw"></i>
+            <span> 评论</span>
+        </div>
+    </div>
+    <div class="comment-wrap">
+        <div id="comment"></div>
+        <script>
+    async function initComment(){
+        var initOptions = Object.assign(
+            {"envId":null,"path":"window.location.pathname"},
+            {
+                el: '#comment',
+                onCommentLoaded: function() {
+                    GLOBALCONFIG.lightbox && acrylic.lightbox('#article-container img, #twikoo .tk-content img:not(.tk-owo-emotion)') 
+                }
+            }
+        )
+        await twikoo.init(initOptions)
+             
+    }
+</script>
+    </div>
+</div>
             
     </div>
     <div class="aside-content" id="aside-content">
@@ -401,7 +459,7 @@
         <span>文章目录</span>
     </div>
     <div class="toc-content" id="toc-content">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%88%9B%E5%BB%BA%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E4%BB%B6"><span class="toc-text">本地创建一篇博客文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91Markdown%E6%96%87%E4%BB%B6"><span class="toc-text">编辑Markdown文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E6%88%90hexo%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5"><span class="toc-text">合成hexo静态网页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">部署到服务器</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Django%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-text">Django学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6Django"><span class="toc-text">为什么要学Django?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E4%B8%AADjango%E9%A1%B9%E7%9B%AE-startproject"><span class="toc-text">第一个Django项目:startproject</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#startapp"><span class="toc-text">startapp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E8%A7%86%E5%9B%BE"><span class="toc-text">编写视图</span></a></li></ol></li></ol>
     </div>
 </div>
             
