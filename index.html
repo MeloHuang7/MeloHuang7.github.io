@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="/css/custom.css">
 
 
+    <script data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/pace/1.2.4/pace.min.js"></script>
+
 
 <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     
@@ -35,9 +37,95 @@
 
 
 
-<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-7-1 18:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":true,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":true,"comment":{"enable":true,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":true,"is_post":false,"is_page":false,"page":false};</script>
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-7-1 18:00:00","lazyload":{"enable":true,"error":"/img/acrylic.png"},"hightlight":{"enable":true,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":true,"comment":{"enable":true,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":true,"is_post":false,"is_page":false,"page":false};</script>
     <meta name="generator" content="Hexo 6.3.0"></head>
     <body id="body">
+        
+            <div id="loading-box" onclick="preloader.endLoading();" class style="zoom: 1;">
+    <div class="loading-bg">
+        <img class="loading-img nolazyload" alt="loading image"
+            src="/img/avatar.webp">
+        </div>
+</div>
+<script>
+    const preloader = {
+        endLoading: () => {
+            document.getElementById('loading-box').classList.add("loaded")
+        },
+        initLoading: () => {
+            document.getElementById('loading-box').classList.remove("loaded")
+        },
+        removePaceDone: () => {
+            document.getElementById('body').classList = 'pace-done'
+        }
+    }
+    window.addEventListener('load',()=> { preloader.endLoading() })
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+</script>
+<style>
+    #loading-box {
+        -webkit-user-select: none;
+    }
+
+    #loading-box .loading-bg {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: var(--heo-background);
+        z-index: 1999;
+        opacity: 1;
+        transition: 0.2s;
+        pointer-events: all;
+        animation: showLoading 0.3s 0s backwards;
+    }
+
+    #loading-box.loaded .loading-bg {
+        pointer-events: none;
+        transition: 0.2s;
+        animation: hideLoading 0.3s 0s forwards;
+    }
+
+    #loading-box .loading-img {
+        width: 100px;
+        margin: auto;
+        animation-duration: 0.2s;
+        animation-name: loadingAction;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+    @keyframes loadingAction {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0.6;
+        }
+    }
+
+    @keyframes hideLoading {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes showLoading {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
         
         <div id="console" style="zoom: 1;" class="">
     <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
@@ -231,14 +319,14 @@
                     <div class="tags-group-icon-pair">
                     
                     <div class="tags-group-icon" style="background: #57b6e6">
-                        <img src="/img/icon/docker.png" title="Docker">
+                        <img src= "/img/acrylic.png" data-lazy-src="/img/icon/docker.png" title="Docker">
                     </div>
                 
             
                 
                     
                     <div class="tags-group-icon" style="background: #ffffff">
-                        <img src="/img/icon/Python.webp" title="Python">
+                        <img src= "/img/acrylic.png" data-lazy-src="/img/icon/Python.webp" title="Python">
                     </div>
                 
                     </div>
@@ -249,14 +337,14 @@
                     <div class="tags-group-icon-pair">
                     
                     <div class="tags-group-icon" style="background: #2c51db">
-                        <img src="/img/icon/CSS3.webp" title="CSS3">
+                        <img src= "/img/acrylic.png" data-lazy-src="/img/icon/CSS3.webp" title="CSS3">
                     </div>
                 
             
                 
                     
                     <div class="tags-group-icon" style="background: #f7cb4f">
-                        <img src="/img/icon/JS.webp" title="JS">
+                        <img src= "/img/acrylic.png" data-lazy-src="/img/icon/JS.webp" title="JS">
                     </div>
                 
                     </div>
@@ -267,7 +355,7 @@
                     <div class="tags-group-icon-pair">
                     
                     <div class="tags-group-icon" style="background: #df5b40">
-                        <img src="/img/icon/git.webp" title="Git">
+                        <img src= "/img/acrylic.png" data-lazy-src="/img/icon/git.webp" title="Git">
                     </div>
                 
                     </div>
@@ -280,14 +368,14 @@
                     <div class="tags-group-icon-pair">
                     
                     <div class="tags-group-icon" style="background: #57b6e6">
-                        <img src="/img/icon/docker.png" title="Docker">
+                        <img src= "/img/acrylic.png" data-lazy-src="/img/icon/docker.png" title="Docker">
                     </div>
                 
             
                 
                     
                     <div class="tags-group-icon" style="background: #ffffff">
-                        <img src="/img/icon/Python.webp" title="Python">
+                        <img src= "/img/acrylic.png" data-lazy-src="/img/icon/Python.webp" title="Python">
                     </div>
                 
                     </div>
@@ -298,14 +386,14 @@
                     <div class="tags-group-icon-pair">
                     
                     <div class="tags-group-icon" style="background: #2c51db">
-                        <img src="/img/icon/CSS3.webp" title="CSS3">
+                        <img src= "/img/acrylic.png" data-lazy-src="/img/icon/CSS3.webp" title="CSS3">
                     </div>
                 
             
                 
                     
                     <div class="tags-group-icon" style="background: #f7cb4f">
-                        <img src="/img/icon/JS.webp" title="JS">
+                        <img src= "/img/acrylic.png" data-lazy-src="/img/icon/JS.webp" title="JS">
                     </div>
                 
                     </div>
@@ -316,7 +404,7 @@
                     <div class="tags-group-icon-pair">
                     
                     <div class="tags-group-icon" style="background: #df5b40">
-                        <img src="/img/icon/git.webp" title="Git">
+                        <img src= "/img/acrylic.png" data-lazy-src="/img/icon/git.webp" title="Git">
                     </div>
                 
                     </div>
@@ -406,7 +494,7 @@
             <div class="recent-post-item" onclick="pjax.loadUrl('/2023/10/04/Django-one/')">
     <div class="post_cover left_radius">
         <a href="/2023/10/04/Django-one/" title="Django学习笔记-1">
-            <img class="post_bg" alt="Django学习笔记-1" src="/medias/django.jpg">
+            <img class="post_bg" alt="Django学习笔记-1" src= "/img/acrylic.png" data-lazy-src="/medias/django.jpg">
         </a>
     </div>
     <div class="recent-post-info">
@@ -437,7 +525,7 @@
             <div class="recent-post-item" onclick="pjax.loadUrl('/2023/10/04/Django-two/')">
     <div class="post_cover left_radius">
         <a href="/2023/10/04/Django-two/" title="Django学习笔记-2">
-            <img class="post_bg" alt="Django学习笔记-2" src="/medias/django.jpg">
+            <img class="post_bg" alt="Django学习笔记-2" src= "/img/acrylic.png" data-lazy-src="/medias/django.jpg">
         </a>
     </div>
     <div class="recent-post-info">
@@ -468,7 +556,7 @@
             <div class="recent-post-item" onclick="pjax.loadUrl('/2023/09/05/java-note/')">
     <div class="post_cover left_radius">
         <a href="/2023/09/05/java-note/" title="Java学习笔记1-从C艹到jvav">
-            <img class="post_bg" alt="Java学习笔记1-从C艹到jvav" src="/medias/jvav.jpg">
+            <img class="post_bg" alt="Java学习笔记1-从C艹到jvav" src= "/img/acrylic.png" data-lazy-src="/medias/jvav.jpg">
         </a>
     </div>
     <div class="recent-post-info">
@@ -499,7 +587,7 @@
             <div class="recent-post-item" onclick="pjax.loadUrl('/2023/07/06/how-to-write-in-hexo/')">
     <div class="post_cover left_radius">
         <a href="/2023/07/06/how-to-write-in-hexo/" title="如何在hexo中上传博客笔记">
-            <img class="post_bg" alt="如何在hexo中上传博客笔记" src="/medias/hexo.jpg">
+            <img class="post_bg" alt="如何在hexo中上传博客笔记" src= "/img/acrylic.png" data-lazy-src="/medias/hexo.jpg">
         </a>
     </div>
     <div class="recent-post-info">
@@ -530,7 +618,7 @@
             <div class="recent-post-item" onclick="pjax.loadUrl('/2023/07/01/hello-world/')">
     <div class="post_cover left_radius">
         <a href="/2023/07/01/hello-world/" title="Hello World">
-            <img class="post_bg" alt="Hello World" src="/img/hello.jpg">
+            <img class="post_bg" alt="Hello World" src= "/img/acrylic.png" data-lazy-src="/img/hello.jpg">
         </a>
     </div>
     <div class="recent-post-info">
@@ -767,7 +855,7 @@
                 <i class="fa-solid fa-clock-rotate-left"></i>
                 <div class="item-name">最后更新 :</div>
             </div>
-            <time class="item-count" datetime="Tue Nov 28 2023 23:58:34 GMT+0800 (中国标准时间)">
+            <time class="item-count" datetime="Mon Dec 04 2023 21:04:00 GMT+0800 (中国标准时间)">
             </time>
         </div>
     
@@ -790,7 +878,7 @@
             <i class="fa-solid fa-envelope"></i>
         </a>
     
-    <img class="footer_mini_logo" src="/img/avatar.webp"
+    <img class="footer_mini_logo" src= "/img/acrylic.png" data-lazy-src="/img/avatar.webp"
         title="返回顶部" onclick="acrylic.toTop()">
     
         <a class="deal_link" target="_blank" href="https://y.qq.com/n/ryqq/playlist/2767219227" rel="external nofollow noopener" title="music">
@@ -862,6 +950,10 @@
     
 
 <script src="/lib/pjax.min.js"></script>
+
+
+    
+<script src="/lib/lazyload.min.js"></script>
 
 
 
