@@ -33,7 +33,7 @@
 
 
 
-<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-7-1 18:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":true,"limit":250},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":true};</script>
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-7-1 18:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":true,"limit":250},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
     <meta name="generator" content="Hexo 6.3.0"></head>
     <body id="body">
         
@@ -332,7 +332,8 @@
 <li>不同仓库设置不同的账户属性：我们将local（仓库级别）配置成github相关账户的账号。此时我们需要先init一个git的仓库并进入里面后执行如下命令：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --<span class="built_in">local</span> user.name <span class="string">&#x27;username&#x27;</span></span> </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --<span class="built_in">local</span> user.email <span class="string">&#x27;username@gmail.com&#x27;</span></span></span><br></pre></td></tr></table></figure>
 意思是这个仓库代码是由配置的那个账户来管理的，但仅仅只是这个仓库</li>
 </ul>
-
+<p>当然，我们也可以不使用上面这种方式，因为我们可不想每次clone一个仓库都去设置，这时当我们想要执行push等命令时可以使用如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果要使用第一个用户push</span></span><br><span class="line">git push @one</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果要使用第二个用户push</span></span><br><span class="line">git push @two</span><br></pre></td></tr></table></figure>
         </article>
         <div class="post-tools" id="post-tools">
             <div class="post-tools-left">
@@ -421,33 +422,6 @@
         </div>
     
 </nav>
-        
-            <div id="post-comment">
-    <div class="comment-head">
-        <div class="comment-headline">
-            <i class="fas fa-message fa-fw"></i>
-            <span> 评论</span>
-        </div>
-    </div>
-    <div class="comment-wrap">
-        <div id="comment"></div>
-        <script>
-    async function initComment(){
-        var initOptions = Object.assign(
-            {"envId":null,"path":"window.location.pathname"},
-            {
-                el: '#comment',
-                onCommentLoaded: function() {
-                    GLOBALCONFIG.lightbox && acrylic.lightbox('#article-container img, #twikoo .tk-content img:not(.tk-owo-emotion)') 
-                }
-            }
-        )
-        await twikoo.init(initOptions)
-             
-    }
-</script>
-    </div>
-</div>
             
     </div>
     <div class="aside-content" id="aside-content">
@@ -658,7 +632,7 @@
     <div class="footer-section-links">
         <div class="footer-section-left">
             <div id="footer-section-tips">
-                <div class="copyright">©2023 - 2025 By 
+                <div class="copyright">©2023 - 2026 By 
                     <a class="footer-section-link" href="/" rel="external nofollow">Melo</a>
                     <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
                 </div>
