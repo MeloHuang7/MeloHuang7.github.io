@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>标签 博客 | Melo&#39;s Blog</title>
+<title>旋转矩阵与李群李代数 | Melo&#39;s Blog</title>
 <noscript>开启Javascript是必要的</noscript>
 <link rel="icon" type="image/x-icon" href="/img/avatar.webp">
 <link rel="apple-touch-icon" href="/img/avatar.webp">
@@ -33,7 +33,7 @@
 
 
 
-<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-7-1 18:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":true,"limit":250},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":false,"is_page":false,"page":false};</script>
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-7-1 18:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":true,"limit":250},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
     <meta name="generator" content="Hexo 6.3.0"></head>
     <body id="body">
         
@@ -71,11 +71,13 @@
                         
                             <a href="/tags/Docker/" style="font-size: 0.8rem; color: #d3d3d3">Docker<sup>1</sup></a>
                         
-                            <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 0.8rem; color: #d3d3d3">博客<sup>1</sup></a>
-                        
                             <a href="/tags/%E5%85%B7%E8%BA%AB/" style="font-size: 0.8rem; color: #d3d3d3">具身<sup>1</sup></a>
                         
                             <a href="/tags/%E5%AF%BC%E8%88%AA/" style="font-size: 0.8rem; color: #d3d3d3">导航<sup>1</sup></a>
+                        
+                            <a href="/tags/Robotics/" style="font-size: 0.8rem; color: #d3d3d3">Robotics<sup>2</sup></a>
+                        
+                            <a href="/tags/DataWhale/" style="font-size: 0.8rem; color: #d3d3d3">DataWhale<sup>3</sup></a>
                         
                     </div>
                 </div>
@@ -85,7 +87,7 @@
      
         <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2026-01/')" data-pjax-state=""><span
             class="card-archive-list-date">2026-01</span>
-            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span
                     class="card-archive-list-count-unit">篇</span></div>
             </a>
         </li>
@@ -197,10 +199,6 @@
                         <sup>1</sup>
                     </a>
                 
-                    <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1em; color: #d3d3d3">博客
-                        <sup>1</sup>
-                    </a>
-                
                     <a href="/tags/%E5%85%B7%E8%BA%AB/" style="font-size: 1em; color: #d3d3d3">具身
                         <sup>1</sup>
                     </a>
@@ -209,13 +207,21 @@
                         <sup>1</sup>
                     </a>
                 
+                    <a href="/tags/Robotics/" style="font-size: 1em; color: #d3d3d3">Robotics
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/DataWhale/" style="font-size: 1em; color: #d3d3d3">DataWhale
+                        <sup>3</sup>
+                    </a>
+                
             </div>
         </div>
     </div>
 </div>    
         
-            <div class="page" id="body-wrap">
-                <header class="not-top-img" id="page-header">
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
     <nav id="nav" class="show">
     <div id="nav-group">
         <div id="blog_name">
@@ -228,7 +234,7 @@
         </div>
         <div id="page-name-mask">
             <div id="page-name">
-                <a id="page-name-text" onclick="acrylic.toTop()">Melo&#39;s Blog</a>
+                <a id="page-name-text" onclick="acrylic.toTop()">旋转矩阵与李群李代数</a>
             </div>
         </div>
         <div id="menus">
@@ -274,106 +280,178 @@
         </div>
     </div>
 </nav>
-        
-</header>
-                <main class="layout" id="content-inner">
-    <div id="tag">
-        <div id="tag-page-tags">
-            
-                <a href="/tags/%E5%AD%A6%E4%B9%A0/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    学习
-                    <span class="tagsPageCount">2</span>
-                </a>
-            
-                <a href="/tags/Django/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    Django
-                    <span class="tagsPageCount">2</span>
-                </a>
-            
-                <a href="/tags/git/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    git
-                    <span class="tagsPageCount">1</span>
-                </a>
-            
-                <a href="/tags/%E8%87%AA%E7%9C%81/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    自省
-                    <span class="tagsPageCount">1</span>
-                </a>
-            
-                <a href="/tags/Docker/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    Docker
-                    <span class="tagsPageCount">1</span>
-                </a>
-            
-                <a href="/tags/%E5%8D%9A%E5%AE%A2/" class="select">
-                    <span class="tags-punctuation">#</span> 
-                    博客
-                    <span class="tagsPageCount">1</span>
-                </a>
-            
-                <a href="/tags/%E5%85%B7%E8%BA%AB/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    具身
-                    <span class="tagsPageCount">1</span>
-                </a>
-            
-                <a href="/tags/%E5%AF%BC%E8%88%AA/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    导航
-                    <span class="tagsPageCount">1</span>
-                </a>
-            
-        </div>
-        <div class="article-sort-title">博客</div>
-        <div class="article-sort">
-            
-
     
-        <div class="article-sort-item year">2026</div>
-    
-    <div class="article-sort-item">
-        <a class="article-sort-item-img" href="/2026/01/15/VLN%20Simulator%20Habitat%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E5%85%A5%E9%97%A8/" title="VLN Simulator Habitat 环境安装与入门">
-            <img src="/medias/habitat/pathfind2_0.png"
-                alt="VLN Simulator Habitat 环境安装与入门">
-        </a>
-        <div class="article-sort-item-info">
-            <a class="article-sort-item-title" href="/2026/01/15/VLN%20Simulator%20Habitat%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E5%85%A5%E9%97%A8/" title="VLN Simulator Habitat 环境安装与入门"
-                onclick="window.event.cancelBubble=true;">
-                VLN Simulator Habitat 环境安装与入门
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="/medias/hand_eye_calibration.png" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
             </a>
-            <div class="article-sort-item-tags">
-                
-                    <a class="article-meta__tags" href="/tags/%E5%8D%9A%E5%AE%A2/" onclick="window.event.cancelBubble=true;">
-                        <span class="tags-punctuation">#</span>
-                        博客
-                    </a>
-                
-                    <a class="article-meta__tags" href="/tags/%E5%85%B7%E8%BA%AB/" onclick="window.event.cancelBubble=true;">
-                        <span class="tags-punctuation">#</span>
-                        具身
-                    </a>
-                
-                    <a class="article-meta__tags" href="/tags/%E5%AF%BC%E8%88%AA/" onclick="window.event.cancelBubble=true;">
-                        <span class="tags-punctuation">#</span>
-                        导航
-                    </a>
-                
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/Robotics/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">Robotics</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/DataWhale/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">DataWhale</span>
+                        </a>
+                    
+                </div>
             </div>
         </div>
     </div>
-
+    <h1 class="post-title">旋转矩阵与李群李代数</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2026-01-19T20:00:00+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为成都">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>成都</span>
+                </span>
+            
+            
+            
+                
         </div>
-        <nav id="pagination">
-    <div class="pagination">
-        
-        <span class="page-number current">1</span>
     </div>
-</nav>       
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <h3 id="旋转矩阵"><a href="#旋转矩阵" class="headerlink" title="旋转矩阵"></a>旋转矩阵</h3><p>旋转矩阵是3D空间中任意旋转的表示，一般来说旋转矩阵R的维度为3x3，可以表示一个笛卡尔坐标轴相对于另一个笛卡尔坐标轴的任意旋转，在一般的机器人学中，用于表示关节之间的旋转关系<br>最经典的旋转矩阵为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">R = \begin&#123;bmatrix&#125; \cos \theta &amp; -\sin \theta &amp; 0 \\ \sin \theta &amp; \cos \theta &amp; 0 \\ 0 &amp; 0 &amp; 1 \end&#123;bmatrix&#125;</span><br></pre></td></tr></table></figure>
+<p>代表一个绕$Z$轴旋转的任意角度为$\theta$的旋转矩阵<br>具体在$R$中每个位置旋转的意义可以参考我手写的笔记<br><img src="/../medias/robo/rotate_matrix.jpg" alt="旋转矩阵"><br>同时考虑在实际情况中将旋转和移动Mapping到3D空间中，那么这个表示变换维度变为4x4，那么齐次变换矩阵的表示为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T = \begin&#123;bmatrix&#125; R &amp; P \\ 0 &amp; 1 \end&#123;bmatrix&#125;</span><br></pre></td></tr></table></figure>
+<p>其中$R$为旋转矩阵，$P$为平移向量，对于某个点$P_A$，通过齐次变换为$P_B$，平移向量为$P_A^B$，有</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;bmatrix&#125;P_B \\ 1 \end&#123;bmatrix&#125; = \begin&#123;bmatrix&#125; R_A^B &amp; P_A^B \\ 0 &amp; 1 \end&#123;bmatrix&#125; \begin&#123;bmatrix&#125;P_A \\ 1 \end&#123;bmatrix&#125;</span><br></pre></td></tr></table></figure>
+<p>通过建立关节(joint)之间的旋转和平移关系，我们可以后续建立对应的正向运动学（通过各关节物理量求出末端位置）和逆向运动学（通过末端位置结算出求出满足的各关节物理量）</p>
+<h3 id="李群与李代数"><a href="#李群与李代数" class="headerlink" title="李群与李代数"></a>李群与李代数</h3><p>李群跟李代数在计算机图形学，机器人学中的使用非常广泛，其中李群主要定义了满足某一集合代数操作的集合，而李代数则定义了该集合的代数操作，比如李群中定义的旋转矩阵，而李代数中定义了对应李群的代数操作，比如微分，求导等<br>关于李群和李代数的定义，可以参考<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/shizheng_Li/article/details/147154648">写给计算机系同学的李群与李代数（一）：从旋转矩阵到抽象群</a><br>简单的说我们在前面定义的旋转矩阵，无论是二维还是三维，都满足了李群的定义，也就是对应一个三维旋转矩阵，定义了在空间中任意旋转变换的集合，所以对一个基座矩阵，将所以旋转矩阵再作用一个单位向量，得到的是一个在空间中的单位圆。<br>而李代数可以将旋转的角度求导得到旋转速度，也就是“无穷小变化”</p>
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="https://melohuang7.github.io/2026/01/19/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9D%8E%E7%BE%A4%E6%9D%8E%E4%BB%A3%E6%95%B0%E6%B1%82%E8%A7%A3-%E4%BB%A5%E6%9C%BA%E6%A2%B0%E8%87%82%E6%89%8B%E7%9C%BC%E6%A0%87%E5%AE%9A%E4%B8%BA%E4%BE%8B/">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "https://melohuang7.github.io/2026/01/19/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9D%8E%E7%BE%A4%E6%9D%8E%E4%BB%A3%E6%95%B0%E6%B1%82%E8%A7%A3-%E4%BB%A5%E6%9C%BA%E6%A2%B0%E8%87%82%E6%89%8B%E7%9C%BC%E6%A0%87%E5%AE%9A%E4%B8%BA%E4%BE%8B/");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=旋转矩阵与李群李代数&amp;url=https://melohuang7.github.io/2026/01/19/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9D%8E%E7%BE%A4%E6%9D%8E%E4%BB%A3%E6%95%B0%E6%B1%82%E8%A7%A3-%E4%BB%A5%E6%9C%BA%E6%A2%B0%E8%87%82%E6%89%8B%E7%9C%BC%E6%A0%87%E5%AE%9A%E4%B8%BA%E4%BE%8B/&amp;pic=/medias/hand_eye_calibration.png"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/Robotics/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                Robotics
+                                <span class="tagsPageCount">2</span>
+                            </a>
+                        
+                            <a href="/tags/DataWhale/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                DataWhale
+                                <span class="tagsPageCount">3</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>旋转矩阵与李群李代数</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/2026/01/19/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9D%8E%E7%BE%A4%E6%9D%8E%E4%BB%A3%E6%95%B0%E6%B1%82%E8%A7%A3-%E4%BB%A5%E6%9C%BA%E6%A2%B0%E8%87%82%E6%89%8B%E7%9C%BC%E6%A0%87%E5%AE%9A%E4%B8%BA%E4%BE%8B/">https://melohuang7.github.io/2026/01/19/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9D%8E%E7%BE%A4%E6%9D%8E%E4%BB%A3%E6%95%B0%E6%B1%82%E8%A7%A3-%E4%BB%A5%E6%9C%BA%E6%A2%B0%E8%87%82%E6%89%8B%E7%9C%BC%E6%A0%87%E5%AE%9A%E4%B8%BA%E4%BE%8B/</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">Melo&#39;s Blog</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        <div class="prev-post pull-left">
+            <a href="/2026/01/19/%E5%9F%BA%E4%BA%8ESAM%E7%9A%84%E5%88%86%E5%89%B2%E4%B8%8E%E5%8D%95%E7%9B%AE%E6%B7%B1%E5%BA%A6%E4%BC%B0%E8%AE%A1/">
+                <div class="pagination-info">
+                    <div class="label">上一篇</div>
+                    <div class="prev_info">基于SAM的视觉理解分割与单目深度估计</div>
+                </div>
+            </a>
+        </div>
+        <div class="next-post pull-right">
+            <a href="/2026/01/15/VLN%20Simulator%20Habitat%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E5%85%A5%E9%97%A8/">
+                <div class="pagination-info">
+                    <div class="label">下一篇</div>
+                    <div class="next_info">VLN Simulator Habitat 环境安装与入门</div>
+                </div>
+            </a>
+        </div>
+    
+</nav>
+            
     </div>
     <div class="aside-content" id="aside-content">
     
@@ -410,29 +488,17 @@
 </div>
      
     
+    <div class="sticky_layout">
         
-        <div class="card-widget heo-right-widget" id="card-wechat" style="background: #0099FF ;">
-    <div id="flip-wrapper">
-        <div id="flip-content">
-            <div class="face">
-                <div class="left">
-                    <span class="title">QQ群</span>
-                    <span class="desc">加入官方QQ群与我们交流 <i class="fa-solid fa-play"></i></span>
-                </div>
-            </div>
-            <div class="back face">
-                <div class="left">
-                    <span class="title">扫一扫</span>
-                    <span class="desc">获取最新信息和帮助 <i class="fa-solid fa-play"></i></span>
-                </div>
-                <img class="nolazyload" src="/img/qqgroup.png">
-            </div>
-        </div>
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5"><span class="toc-text">旋转矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%8E%E7%BE%A4%E4%B8%8E%E6%9D%8E%E4%BB%A3%E6%95%B0"><span class="toc-text">李群与李代数</span></a></li></ol>
     </div>
 </div>
-     
-    
-    <div class="sticky_layout">
             
         
             
@@ -443,6 +509,36 @@
     </div>
     <div class="aside-list">
         
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2026/01/19/%E5%9F%BA%E4%BA%8ESAM%E7%9A%84%E5%88%86%E5%89%B2%E4%B8%8E%E5%8D%95%E7%9B%AE%E6%B7%B1%E5%BA%A6%E4%BC%B0%E8%AE%A1/" title="基于SAM的视觉理解分割与单目深度估计">
+                    <img
+                        alt="基于SAM的视觉理解分割与单目深度估计"
+                        src="/medias/sam/interactive.png">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2026/01/19/%E5%9F%BA%E4%BA%8ESAM%E7%9A%84%E5%88%86%E5%89%B2%E4%B8%8E%E5%8D%95%E7%9B%AE%E6%B7%B1%E5%BA%A6%E4%BC%B0%E8%AE%A1/" title="基于SAM的视觉理解分割与单目深度估计">
+                        基于SAM的视觉理解分割与单目深度估计
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2026/01/19/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9D%8E%E7%BE%A4%E6%9D%8E%E4%BB%A3%E6%95%B0%E6%B1%82%E8%A7%A3-%E4%BB%A5%E6%9C%BA%E6%A2%B0%E8%87%82%E6%89%8B%E7%9C%BC%E6%A0%87%E5%AE%9A%E4%B8%BA%E4%BE%8B/" title="旋转矩阵与李群李代数">
+                    <img
+                        alt="旋转矩阵与李群李代数"
+                        src="/medias/hand_eye_calibration.png">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2026/01/19/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9D%8E%E7%BE%A4%E6%9D%8E%E4%BB%A3%E6%95%B0%E6%B1%82%E8%A7%A3-%E4%BB%A5%E6%9C%BA%E6%A2%B0%E8%87%82%E6%89%8B%E7%9C%BC%E6%A0%87%E5%AE%9A%E4%B8%BA%E4%BE%8B/" title="旋转矩阵与李群李代数">
+                        旋转矩阵与李群李代数
+                    </a>
+                </div>
+            </div>
+                
         
             <div class="aside-list-item">
                 <a class="thumbnail" href="/2026/01/15/VLN%20Simulator%20Habitat%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E5%85%A5%E9%97%A8/" title="VLN Simulator Habitat 环境安装与入门">
@@ -487,141 +583,8 @@
                     </a>
                 </div>
             </div>
-                
-        
-            <div class="aside-list-item">
-                <a class="thumbnail" href="/2024/02/28/Django-two/" title="Django学习笔记-2">
-                    <img
-                        alt="Django学习笔记-2"
-                        src="/medias/django.jpg">
-                </a>
-                <div class="content">
-                    
-                    <a class="title" href="/2024/02/28/Django-two/" title="Django学习笔记-2">
-                        Django学习笔记-2
-                    </a>
-                </div>
-            </div>
-                
-        
-            <div class="aside-list-item">
-                <a class="thumbnail" href="/2023/12/04/git_multiusers/" title="git配置多账户">
-                    <img
-                        alt="git配置多账户"
-                        src="/img/icon/git.png">
-                </a>
-                <div class="content">
-                    
-                    <a class="title" href="/2023/12/04/git_multiusers/" title="git配置多账户">
-                        git配置多账户
-                    </a>
-                </div>
-            </div>
             
     </div>
-</div>
-     
-        
-            
-        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
-    <div class="card-tag-cloud">
-    
-        <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8rem; color: #d3d3d3">学习<sup>2</sup></a>
-    
-        <a href="/tags/Django/" style="font-size: 0.8rem; color: #d3d3d3">Django<sup>2</sup></a>
-    
-        <a href="/tags/git/" style="font-size: 0.8rem; color: #d3d3d3">git<sup>1</sup></a>
-    
-        <a href="/tags/%E8%87%AA%E7%9C%81/" style="font-size: 0.8rem; color: #d3d3d3">自省<sup>1</sup></a>
-    
-        <a href="/tags/Docker/" style="font-size: 0.8rem; color: #d3d3d3">Docker<sup>1</sup></a>
-    
-        <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 0.8rem; color: #d3d3d3">博客<sup>1</sup></a>
-    
-        <a href="/tags/%E5%85%B7%E8%BA%AB/" style="font-size: 0.8rem; color: #d3d3d3">具身<sup>1</sup></a>
-    
-        <a href="/tags/%E5%AF%BC%E8%88%AA/" style="font-size: 0.8rem; color: #d3d3d3">导航<sup>1</sup></a>
-    
-</div>
-    <ul class="card-archive-list">
-    
-     
-        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/')" data-pjax-state=""><span
-            class="card-archive-list-date">2023</span>
-            <div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span
-                    class="card-archive-list-count-unit">篇</span></div>
-            </a>
-        </li>
-     
-        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2024/')" data-pjax-state=""><span
-            class="card-archive-list-date">2024</span>
-            <div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span
-                    class="card-archive-list-count-unit">篇</span></div>
-            </a>
-        </li>
-     
-        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2026/')" data-pjax-state=""><span
-            class="card-archive-list-date">2026</span>
-            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
-                    class="card-archive-list-count-unit">篇</span></div>
-            </a>
-        </li>
-        
-</ul>
-
-    <hr>
-    <div class="webinfo">
-    
-        <div class="webinfo-item">
-            <div class="webinfo-item-title">
-                <i class="item-icon fas fa-file-alt"></i>
-                <div class="item-name">文章总数 :</div>
-            </div>
-            <div class="item-count">8</div>
-        </div>
-    
-    
-        
-            <div class="webinfo-item">
-                <div class="webinfo-item-title">
-                    <i class="fa-solid fa-fire"></i>
-                    <div class="item-name">总访问数 :</div>
-                </div>
-                <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-pulse"></i></span>
-            </div>
-        
-        
-            <div class="webinfo-item">
-                <div class="webinfo-item-title">
-                    <i class="fa-solid fa-eye"></i>
-                    <div class="item-name">总访客数 :</div>
-                </div>
-                <span id="busuanzi_value_site_uv"><i class="fas fa-spinner fa-pulse"></i></span>
-            </div>
-        
-    
-    
-        <div class="webinfo-item">
-            <div class="webinfo-item-title">
-                <i class="item-icon fas fa-stopwatch"></i>
-                <div class="item-name">建站天数 :</div>
-            </div>
-            <div class="item-count" id="runtimeshow">
-            </div>
-        </div>
-    
-    
-        <div class="webinfo-item">
-            <div class="webinfo-item-title">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                <div class="item-name">最后更新 :</div>
-            </div>
-            <time class="item-count" datetime="Thu Jan 15 2026 21:41:39 GMT+0800 (中国标准时间)">
-            </time>
-        </div>
-    
-    
-</div>
 </div>
      
         
@@ -790,4 +753,4 @@
     
     </body>
 </html>
-<script>const posts=["2026/01/15/VLN Simulator Habitat 环境安装与入门/","2024/08/18/docker-one/","2024/06/13/future-think/","2024/02/28/Django-two/","2023/12/04/git_multiusers/","2023/10/04/Django-one/","2023/09/05/java-note/","2023/07/06/how-to-write-in-hexo/"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>
+<script>const posts=["2026/01/19/基于SAM的分割与单目深度估计/","2026/01/19/旋转矩阵与李群李代数求解-以机械臂手眼标定为例/","2026/01/15/VLN Simulator Habitat 环境安装与入门/","2024/08/18/docker-one/","2024/06/13/future-think/","2024/02/28/Django-two/","2023/12/04/git_multiusers/","2023/10/04/Django-one/","2023/09/05/java-note/","2023/07/06/how-to-write-in-hexo/"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>
