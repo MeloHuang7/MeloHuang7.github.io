@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>基于IssacGym的人物交互RL仿真 | Melo&#39;s Blog</title>
+<noscript>开启Javascript是必要的</noscript>
+<link rel="icon" type="image/x-icon" href="/img/avatar.webp">
+<link rel="apple-touch-icon" href="/img/avatar.webp">
+<meta name="apple-mobile-web-app-title" content="Melo&#39;s Blog">
+<link rel="bookmark" href="/img/avatar.webp">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/avatar.webp">
+<meta name="description" content="">
+<meta name="theme-color" content="#1C1C1F">
+<link rel="stylesheet" href="/css/var.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+    <script data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/pace/1.2.4/pace.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+
+<link rel="stylesheet" href="/lib/snackbar.min.css">
+
+
+<script src="/lib/qrcode.min.js"></script>
+
+
+
+
+
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-7-1 18:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":true,"limit":250},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body id="body">
+        
+        <div id="console" style="zoom: 1;" class="">
+    <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
+        <i class="fas fa-circle-xmark"></i>
+    </div>
+    
+        <div class="console-card-group">
+            <div class="console-card-group-left">
+                <div class="console-card" id="card-newest-comments" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">互动</div>
+                        <div class="author-content-item-title">最新评论</div>
+                    </div>
+                    <div class="aside-list"></div>
+                </div>
+    
+            </div>
+            <div class="console-card-group-right">
+                <div class="console-card tags" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">标签</div>
+                        <div class="author-content-item-title">寻找感兴趣的领域</div>
+                    </div>
+                    <div class="card-tag-cloud">
+                        
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8rem; color: #d3d3d3">学习<sup>2</sup></a>
+                        
+                            <a href="/tags/Django/" style="font-size: 0.8rem; color: #d3d3d3">Django<sup>2</sup></a>
+                        
+                            <a href="/tags/git/" style="font-size: 0.8rem; color: #d3d3d3">git<sup>1</sup></a>
+                        
+                            <a href="/tags/%E8%87%AA%E7%9C%81/" style="font-size: 0.8rem; color: #d3d3d3">自省<sup>1</sup></a>
+                        
+                            <a href="/tags/Docker/" style="font-size: 0.8rem; color: #d3d3d3">Docker<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%85%B7%E8%BA%AB/" style="font-size: 0.8rem; color: #d3d3d3">具身<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%AF%BC%E8%88%AA/" style="font-size: 0.8rem; color: #d3d3d3">导航<sup>1</sup></a>
+                        
+                            <a href="/tags/Robotics/" style="font-size: 0.8rem; color: #d3d3d3">Robotics<sup>3</sup></a>
+                        
+                            <a href="/tags/DataWhale/" style="font-size: 0.8rem; color: #d3d3d3">DataWhale<sup>4</sup></a>
+                        
+                            <a href="/tags/RL/" style="font-size: 0.8rem; color: #d3d3d3">RL<sup>1</sup></a>
+                        
+                    </div>
+                </div>
+                <div class="console-card history" onclick="acrylic.hideConsole()">
+                    <ul class="card-archive-list">
+    
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2026-01/')" data-pjax-state=""><span
+            class="card-archive-list-date">2026-01</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2024-08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2024-08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2024-06/')" data-pjax-state=""><span
+            class="card-archive-list-date">2024-06</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2024-02/')" data-pjax-state=""><span
+            class="card-archive-list-date">2024-02</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023-12/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023-12</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023-10/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023-10</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023-09/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023-09</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023-07/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023-07</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+        
+</ul>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="button-group">
+        <div class="console-btn-item"> <a class="darkmode_switchbutton" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow" data-pjax-state=""><i class="fas fa-moon"
+                    style="font-size: 1rem;"></i></a></div>
+        
+    </div>
+    <div class="console-mask" onclick="acrylic.hideConsole()" href="javascript:void(0);" rel="external nofollow"></div>
+</div>
+        <div id="sidebar" style="zoom: 1;">
+    <div id="menu-mask" style="display: none;"></div>
+    <div id="sidebar-menus" class>
+        <span class="sidebar-menu-item-title">功能</span>
+        <div class="sidebar-menu-item">
+            <a class="darkmode_switchbutton menu-child" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow">
+                <i class="fas fa-moon" style="font-size: 1rem;"></i>
+                <span>显示模式</span>
+            </a>
+        </div>
+        
+        <div class="menus_items">
+    
+</div>
+        <span class="sidebar-menu-item-title">标签</span>
+        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
+            <div class="item-headline">
+                <i class="fas fa-tags"></i>
+                <span>标签</span>
+            </div>
+            <div class="card-tag-cloud">
+                
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 1em; color: #d3d3d3">学习
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/Django/" style="font-size: 1em; color: #d3d3d3">Django
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/git/" style="font-size: 1em; color: #d3d3d3">git
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%87%AA%E7%9C%81/" style="font-size: 1em; color: #d3d3d3">自省
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/Docker/" style="font-size: 1em; color: #d3d3d3">Docker
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%85%B7%E8%BA%AB/" style="font-size: 1em; color: #d3d3d3">具身
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%AF%BC%E8%88%AA/" style="font-size: 1em; color: #d3d3d3">导航
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/Robotics/" style="font-size: 1em; color: #d3d3d3">Robotics
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/DataWhale/" style="font-size: 1em; color: #d3d3d3">DataWhale
+                        <sup>4</sup>
+                    </a>
+                
+                    <a href="/tags/RL/" style="font-size: 1em; color: #d3d3d3">RL
+                        <sup>1</sup>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+        
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
+    <nav id="nav" class="show">
+    <div id="nav-group">
+        <div id="blog_name">
+            
+            <a id="site-name" href="/" title="返回博客主页">
+                    
+                        <span class="heoicon">主页</span>
+                    
+            </a>
+        </div>
+        <div id="page-name-mask">
+            <div id="page-name">
+                <a id="page-name-text" onclick="acrylic.toTop()">基于IssacGym的人物交互RL仿真</a>
+            </div>
+        </div>
+        <div id="menus">
+            <div class="menus_items">
+    
+</div>
+        </div>
+        <!-- <div id="nav-left">
+            <div id="fps-group">
+                <div id="fps">145</div><span class="fpsText">FPS</span>
+            </div>
+        </div> -->
+        <div id="nav-right">
+            
+
+    <div class="nav-button" id="randomPost_button">
+        <a class="site-page" onclick="toRandomPost()"
+            title="随机前往一个文章">
+            <i class="fas fa-shuffle" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+
+    <div class="nav-button" id="nav-console">
+        <a class="console_switchbutton" onclick="acrylic.showConsole()"
+        title="显示中控台" href="javascript:void(0);" rel="external nofollow">
+        <i class="fas fa-bars-progress" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+<div class="nav-button" id="nav-totop" onclick="acrylic.toTop()">
+    <a class="totopbtn">
+        <i class="fas fa-arrow-up"></i>
+        <span id="percent">0</span>
+    </a>
+</div>
+<div id="toggle-menu">
+    <a class="site-page">
+        <i class="fas fa-bars fa-fw" style="font-size: 1rem;"></i>
+    </a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="/medias/robo/coohoi.png" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/Robotics/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">Robotics</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/DataWhale/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">DataWhale</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/RL/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">RL</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">基于IssacGym的人物交互RL仿真</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2026-01-24T23:39:00+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为成都">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>成都</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <h3 id="从DeepMimic出发，让仿真中的人能像“人”一样"><a href="#从DeepMimic出发，让仿真中的人能像“人”一样" class="headerlink" title="从DeepMimic出发，让仿真中的人能像“人”一样"></a>从DeepMimic出发，让仿真中的人能像“人”一样</h3><p>本次DateWhale基于的论文是<a target="_blank" rel="noopener" href="https://github.com/Winston-Gu/CooHOI.git">CooHOI</a>,整个项目框架大概为<br>CooHOI (Learning Cooperative Human-Object Interaction)<br>  ├── README.md                              # 项目说明文档<br>  ├── requirements.txt                       # Python依赖配置<br>  └── assets&#x2F;                               # 资源目录（沙发，盒子）<br>      ├── CooHOI.png                        # 项目示意图<br>      └── RewardCurves.png                  # 训练曲线图</p>
+<p>  └── coohoi&#x2F;                              # 主代码目录<br>      ├── run.py                           # 主入口：启动训练&#x2F;测试，集成RL-Games框架</p>
+<pre><code>  ├── learning/                        # 训练学习模块
+  │   ├── common_agent.py              # 通用智能体基类（策略/价值网络训练，PPO算法实现）
+  │   ├── common_player.py             # 通用玩家基类（推理和评估逻辑）
+  │   ├── amp_agent.py                 # AMP智能体（对抗运动先验训练，判别器优化）
+  │   ├── amp_players.py               # AMP玩家实现（支持运动风格化推理）
+  │   ├── amp_models.py                # AMP连续模型定义（策略网络结构）
+  │   ├── amp_network_builder.py       # AMP神经网络构建器（创建判别器和策略网络）
+  │   ├── amp_datasets.py              # AMP数据集处理（加载和管理运动数据）
+  │   └── replay_buffer.py             # 经验回放缓存（存储训练样本，支持AMP）
+  │   └── legacy.py                    # 向后兼容代码
+
+  ├── env/                             # 环境定义
+  │   └── tasks/                       # 任务实现
+  │       ├── vec_task.py              # 向量化任务基类（CPU/GPU加速）
+  │       ├── vec_task_wrappers.py     # 环境包装器（支持不同后端）
+  │       ├── base_task.py             # 基础任务类（定义RL环境接口）
+  │       ├── humanoid.py              # 基础人形机器人环境（核心物理模拟）
+  │       ├── humanoid_amp.py          # 支持AMP的人形环境（加入运动先验）
+  │       ├── humanoid_amp_carryobject.py  # 单智能体搬运物体任务（拾取+搬运+放置）
+  │       ├── humanoid_amp_task.py     # 单智能体任务配置包装器
+  │       ├── humanoid_view_motion.py  # 运动可视化环境（调试工具）
+  │       ├── share_humanoid.py        # 双人协作环境（两个机器人交互）
+  │       ├── share_humanoid_amp.py    # 双人AMP环境
+  │       └── share_humanoid_amp_carryobject.py  # 双智能体协作搬运任务（合作搬运）
+
+  ├── utils/                           # 工具函数库
+  │   ├── config.py                    # 配置解析器（管理命令行参数和配置文件）
+  │   ├── parse_task.py                # 任务工厂（动态创建任务实例）
+  │   ├── motion_lib.py                # 运动库管理器（加载AMASS运动数据）
+  │   ├── torch_utils.py               # PyTorch工具函数（3D旋转、几何变换）
+  │   ├── gym_util.py                  # Gym环境工具函数
+  │   └── logger.py                    # 日志记录工具
+  │   └── __init__.py                  # 模块初始化
+
+  ├── poselib/                         # 姿势与运动处理库
+  │   ├── retarget_motion.py           # 运动重定向（适配不同骨骼结构）
+  │   ├── fbx_importer.py              # FBX格式导入器
+  │   ├── mjcf_importer.py             # MJCF格式导入器
+  │   ├── generate_amp_humanoid_tpose.py  # 生成标准T-Pose姿态
+  │   └── poselib/                     # 核心姿势库
+  │       ├── core/                    # 核心数学功能
+  │       │   ├── rotation3d.py        # 3D旋转计算（欧拉角、四元数、旋转矩阵）
+  │       │   └── tensor_utils.py      # 张量操作工具函数
+  │       ├── skeleton/                # 骨骼系统
+  │       │   └── skeleton3d.py        # 3D骨骼定义与操作
+  │       └── visualization/           # 可视化工具
+  │           ├── core.py              # 可视化核心功能
+  │           ├── plt_plotter.py       # Matplotlib绘图器
+  │           └── skeleton_plotter_tasks.py  # 骨骼可视化任务
+
+  └── data/                            # 数据资源目录
+      ├── assets/mjcf/                 # 模型定义文件
+      │   ├── amp_humanoid.xml         # 人形机器人MJCF定义
+      │   ├── box.urdf                 # 箱子模型
+      │   └── *.urdf                   # 其他物体模型
+      ├── cfg/                         # 配置文件
+      │   ├── train/                   # 训练配置
+      │   │   ├── amp_humanoid_task.yaml      # 单智能体训练配置
+      │   │   └── share_humanoid_task_coohoi.yaml  # 双智能体训练配置
+      │   ├── humanoid_carrybox.yaml      # 单智能体环境配置
+      │   └── share_humanoid_carrybox.yaml  # 双智能体环境配置
+      ├── models/                      # 预训练模型
+      │   ├── SingleAgent.pth           # 单智能体策略权重
+      │   └── TwoAgent.pth              # 双智能体协作策略权重
+      ├── motions/                     # 运动数据集
+      │   ├── amp_original/                   # 原始AMP运动数据（行走、跑步）
+      │   └── coohoi_data/                    # CooHOI扩展数据
+      │       ├── coohoi_data.yaml            # 运动数据配置
+      │       ├── loco/                       # 行走数据
+      │       ├── loco_reverse/               # 倒序行走数据
+      │       ├── pickup/                     # 拾取动作
+      │       ├── carry/                      # 搬运动作
+      │       ├── carry_reverse/              # 倒序搬运
+      │       ├── putdown/                    # 放置动作
+      │       └── sidewalk/                   # 特定场景行走
+      └── objects_asset/                # 物体资产（可选）
+</code></pre>
+<p>CooHOI基本是沿用了AMP&#x2F;ASE（都是Jason Xue Bin Peng的文章）的代码框架，主要添加了learning和model里对协同任务的定义和支持，以及对应assert的加载，包括<code>run.py</code>来控制整个项目训练与评估，可视化。</p>
+<p>其实有很多的项目都沿用了AMP当中的模块，包括CMU LecarLab的<a target="_blank" rel="noopener" href="https://github.com/LeCAR-Lab/human2humanoid">H2O</a>、Zen Luo的通用人型控制器<a target="_blank" rel="noopener" href="https://github.com/ZhengyiLuo/PHC">PHC</a>，包括Jason Peng后续的ASE，MimicKit。</p>
+<h3 id="Mimic作为一个Unified-Reward"><a href="#Mimic作为一个Unified-Reward" class="headerlink" title="Mimic作为一个Unified Reward"></a>Mimic作为一个Unified Reward</h3><p>在DRL刚开始被大家开始做的时候，一些比较有代表性的工作比如AlphaGo（几乎没有人类可以打败），虽然通过大量的episode训练，但是其实reward设计是非常复杂的。这在Avatar Motion方面也是如此，当时做动画动作生成，一般都是使用Dynamics Model，就跟对某一个任务的reward设计一样，这些model用来设计一些特定的动作，比如奔跑，翻转等。但是如果需要新加动作就需要新的模型来支持，这是非常耗费人力的。所以DeepMimic的思路就是，虽然我做每个动作的reward function都是不同的，但是对于motion tracking来说，我只需要保证agent在每个时刻与我们所期待的动作（也就是类似人类的动作）一致，那么我们可以将reward设计成一个unified reward function，reward就根据当前agent各个关节位置与输入指导数据（一般是动作捕捉数据）之间的差异来计算，这样不仅各个动作的function可以统一而且这样可以避免一些sparse reward，然后通过训练这个reward function来学习agent所期待的动作。<br>在王建明的podcast中，Jason也提到了，比较强化学习和模仿学习是不太好比较的，因为模仿学习可以是一般范式，你可以用类似监督学习的方法来teacher-student训练，也可以通过强化学习来实现模仿（比如这里的Motion Tracking）。</p>
+<h3 id="AMP将单纯的动作数值误差转为分布的误差"><a href="#AMP将单纯的动作数值误差转为分布的误差" class="headerlink" title="AMP将单纯的动作数值误差转为分布的误差"></a>AMP将单纯的动作数值误差转为分布的误差</h3><p>其中GAN中descriminator的loss定义为数据集中状态转移对上，D函数将状态转移变为一个概率分布，通过loss来约束使得两者分布接近。同时reward也做了处理来让policy输出的状态转移分布更接近真实数据集的分数<br><img src="/../medias/robo/amp_des.png" alt="GAN"><br>并且在policy输出的action中，action被编码之后送给PID控制器（这里I为0所以实际为PD控制器），然后关节旋转施加力矩得到新的state。</p>
+<h3 id="CooHOI-优化Cooperative-Humanoid-Task"><a href="#CooHOI-优化Cooperative-Humanoid-Task" class="headerlink" title="CooHOI 优化Cooperative Humanoid Task"></a>CooHOI 优化Cooperative Humanoid Task</h3><p>相对于AMP，CooHOI的MDP可以看做的是Partial Observation。其实每个agent的observation是local而不是全局的，所以在后面多agent任务的时候，作者优化了agent的local observation，使得agent更关注自己搬运物体的一角。还有一点CooHOI divide training into two-phase，先是基于AMP训练一个单agent完成定义好的task的策略，之后基于这个策略进行多agent任务训练。因为是POMDP，所以每个agent都可以用这个policy来与环境交互，同时可以从多agent得到梯度回传，用MAPPO进行梯度优化。</p>
+<h3 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h3><p>单agent<br><img src="/../medias/robo/coohoi_eval_single.gif" alt="single agent"><br>多agent<br><img src="/../medias/robo/coohoi_eval_multi.gif" alt="multi agent"><br>当我们在执行命令中不加载checkpoint的时候，模型会默认加载Base checkpoint，也就是没训练的策略<br>CUDA_VISIBLE_DEVICES&#x3D;0 python coohoi&#x2F;run.py –test <br>–task ShareHumanoidCarryObject <br>–num_envs 16 <br>–cfg_env coohoi&#x2F;data&#x2F;cfg&#x2F;share_humanoid_carrybox.yaml <br>–cfg_train coohoi&#x2F;data&#x2F;cfg&#x2F;train&#x2F;share_humanoid_task_coohoi.yaml <br>–motion_file coohoi&#x2F;data&#x2F;motions&#x2F;coohoi_data&#x2F;coohoi_data.yaml <br><img src="/../medias/robo/coohoi_eval_scratch.gif" alt="Scratch"></p>
+<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p>我们这里主要从Scratch开始训练，由于算力和训练时长只训练一个Single Agent策略，并且这里遇到了涉及到<code>wandb的断点续训以及API_KEY的一些bug</code>，后面我会继续写个blog来介绍怎么做<br><img src="/../medias/robo/coohoi_train_single.png" alt="training curve"><br>后面我们对训练出来的policy做一些评估，发现agent的行为还有些问题，在行走和搬运的时候，抬物体是没问题的，放物体还有一些问题。<br><img src="/../medias/robo/coohoi_trainging_eval_single.gif" alt="evaluation"></p>
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="https://melohuang7.github.io/2026/01/24/%E5%9F%BA%E4%BA%8EIssacGym%E7%9A%84%E4%BA%BA%E7%89%A9%E4%BA%A4%E4%BA%92RL%E4%BB%BF%E7%9C%9F/">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "https://melohuang7.github.io/2026/01/24/%E5%9F%BA%E4%BA%8EIssacGym%E7%9A%84%E4%BA%BA%E7%89%A9%E4%BA%A4%E4%BA%92RL%E4%BB%BF%E7%9C%9F/");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=基于IssacGym的人物交互RL仿真&amp;url=https://melohuang7.github.io/2026/01/24/%E5%9F%BA%E4%BA%8EIssacGym%E7%9A%84%E4%BA%BA%E7%89%A9%E4%BA%A4%E4%BA%92RL%E4%BB%BF%E7%9C%9F/&amp;pic=/medias/robo/coohoi.png"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/Robotics/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                Robotics
+                                <span class="tagsPageCount">3</span>
+                            </a>
+                        
+                            <a href="/tags/DataWhale/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                DataWhale
+                                <span class="tagsPageCount">4</span>
+                            </a>
+                        
+                            <a href="/tags/RL/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                RL
+                                <span class="tagsPageCount">1</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>基于IssacGym的人物交互RL仿真</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/2026/01/24/%E5%9F%BA%E4%BA%8EIssacGym%E7%9A%84%E4%BA%BA%E7%89%A9%E4%BA%A4%E4%BA%92RL%E4%BB%BF%E7%9C%9F/">https://melohuang7.github.io/2026/01/24/%E5%9F%BA%E4%BA%8EIssacGym%E7%9A%84%E4%BA%BA%E7%89%A9%E4%BA%A4%E4%BA%92RL%E4%BB%BF%E7%9C%9F/</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">Melo&#39;s Blog</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        
+            <div class="next-post pull-full">
+                <a href="/2026/01/19/%E5%9F%BA%E4%BA%8ESAM%E7%9A%84%E5%88%86%E5%89%B2%E4%B8%8E%E5%8D%95%E7%9B%AE%E6%B7%B1%E5%BA%A6%E4%BC%B0%E8%AE%A1/">
+                    <div class="pagination-info">
+                        <div class="label">下一篇</div>
+                        <div class="next_info">基于SAM的视觉理解分割与单目深度估计</div>
+                    </div>
+                </a>
+            </div>
+                
+        
+    
+</nav>
+            
+    </div>
+    <div class="aside-content" id="aside-content">
+    
+    
+        
+        <div class="card-widget card-info">
+    <div class="card-content">
+        <div class="card-info-avatar is-center">
+            <div class="author-info__sayhi" id="author-info__sayhi">
+            </div>
+            <div class="author-info__name">
+                Melo
+            </div>
+            <div class="author-info__description">这有关于<b>开发与技术</b>、<b>学习与生活</b>的看法与分享，还有对于电影,音乐的一些<b>杂评</b>。<br>希望你可以在这里找到对你有用的知识和教程。</div>
+        </div>
+    </div>
+    <div class="banner-button-group">
+        <a class="banner-button" href="/">
+            <i class="fas fa-circle-chevron-right"></i>
+            <span class="banner-button-text">个人主页</span>
+        </a>
+    </div>
+    <div class="card-info-social-icons is-center">
+        
+            <a class="social-icon" target="_blank" rel="noopener" href="https://github.com/Jiaxi-Huang" title="Github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        
+            <a class="social-icon" href="mailto:huangjiaxi111@gmail.com" title="Mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        
+    </div>
+</div>
+     
+    
+    <div class="sticky_layout">
+        
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8EDeepMimic%E5%87%BA%E5%8F%91%EF%BC%8C%E8%AE%A9%E4%BB%BF%E7%9C%9F%E4%B8%AD%E7%9A%84%E4%BA%BA%E8%83%BD%E5%83%8F%E2%80%9C%E4%BA%BA%E2%80%9D%E4%B8%80%E6%A0%B7"><span class="toc-text">从DeepMimic出发，让仿真中的人能像“人”一样</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mimic%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AAUnified-Reward"><span class="toc-text">Mimic作为一个Unified Reward</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AMP%E5%B0%86%E5%8D%95%E7%BA%AF%E7%9A%84%E5%8A%A8%E4%BD%9C%E6%95%B0%E5%80%BC%E8%AF%AF%E5%B7%AE%E8%BD%AC%E4%B8%BA%E5%88%86%E5%B8%83%E7%9A%84%E8%AF%AF%E5%B7%AE"><span class="toc-text">AMP将单纯的动作数值误差转为分布的误差</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CooHOI-%E4%BC%98%E5%8C%96Cooperative-Humanoid-Task"><span class="toc-text">CooHOI 优化Cooperative Humanoid Task</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0"><span class="toc-text">评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83"><span class="toc-text">训练</span></a></li></ol>
+    </div>
+</div>
+            
+        
+            
+        <div class="card-widget card-recent-post">
+    <div class="item-headline">
+        <i class="fas fa-list-ol"></i>
+        <span>最近发布</span>
+    </div>
+    <div class="aside-list">
+        
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2026/01/24/%E5%9F%BA%E4%BA%8EIssacGym%E7%9A%84%E4%BA%BA%E7%89%A9%E4%BA%A4%E4%BA%92RL%E4%BB%BF%E7%9C%9F/" title="基于IssacGym的人物交互RL仿真">
+                    <img
+                        alt="基于IssacGym的人物交互RL仿真"
+                        src="/medias/robo/coohoi.png">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2026/01/24/%E5%9F%BA%E4%BA%8EIssacGym%E7%9A%84%E4%BA%BA%E7%89%A9%E4%BA%A4%E4%BA%92RL%E4%BB%BF%E7%9C%9F/" title="基于IssacGym的人物交互RL仿真">
+                        基于IssacGym的人物交互RL仿真
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2026/01/19/%E5%9F%BA%E4%BA%8ESAM%E7%9A%84%E5%88%86%E5%89%B2%E4%B8%8E%E5%8D%95%E7%9B%AE%E6%B7%B1%E5%BA%A6%E4%BC%B0%E8%AE%A1/" title="基于SAM的视觉理解分割与单目深度估计">
+                    <img
+                        alt="基于SAM的视觉理解分割与单目深度估计"
+                        src="/medias/sam/interactive.png">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2026/01/19/%E5%9F%BA%E4%BA%8ESAM%E7%9A%84%E5%88%86%E5%89%B2%E4%B8%8E%E5%8D%95%E7%9B%AE%E6%B7%B1%E5%BA%A6%E4%BC%B0%E8%AE%A1/" title="基于SAM的视觉理解分割与单目深度估计">
+                        基于SAM的视觉理解分割与单目深度估计
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2026/01/19/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9D%8E%E7%BE%A4%E6%9D%8E%E4%BB%A3%E6%95%B0/" title="旋转矩阵与李群李代数">
+                    <img
+                        alt="旋转矩阵与李群李代数"
+                        src="/medias/robo/matrix.jpg">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2026/01/19/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9D%8E%E7%BE%A4%E6%9D%8E%E4%BB%A3%E6%95%B0/" title="旋转矩阵与李群李代数">
+                        旋转矩阵与李群李代数
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2026/01/15/VLN%20Simulator%20Habitat%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E5%85%A5%E9%97%A8/" title="VLN Simulator Habitat 环境安装与入门">
+                    <img
+                        alt="VLN Simulator Habitat 环境安装与入门"
+                        src="/medias/habitat/pathfind2_0.png">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2026/01/15/VLN%20Simulator%20Habitat%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E5%85%A5%E9%97%A8/" title="VLN Simulator Habitat 环境安装与入门">
+                        VLN Simulator Habitat 环境安装与入门
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2024/08/18/docker-one/" title="Docker学习笔记-1">
+                    <img
+                        alt="Docker学习笔记-1"
+                        src="/medias/docker.jpg">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2024/08/18/docker-one/" title="Docker学习笔记-1">
+                        Docker学习笔记-1
+                    </a>
+                </div>
+            </div>
+            
+    </div>
+</div>
+     
+        
+    </div>
+</div> 
+</main>
+                <footer id="footer">
+                    <div id="footer_deal">
+    
+        <a class="deal_link" target="_blank" href="https://github.com/ToughMamba" rel="external nofollow noopener" title="Github">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    
+        <a class="deal_link" href="/AboutMe/index.html" rel="external nofollow" title="Mail">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    
+    <img class="footer_mini_logo" src="/img/avatar.webp"
+        title="返回顶部" onclick="acrylic.toTop()">
+    
+        <a class="deal_link" target="_blank" href="https://y.qq.com/n/ryqq/playlist/2767219227" rel="external nofollow noopener" title="music">
+            <i class="fa-solid fa-music"></i>
+        </a>
+    
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com/507532901?spm_id_from=333.1007.0.0" rel="external nofollow noopener" title="bilibili">
+            <i class="fa-brands fa-bilibili"></i>
+        </a>
+    
+</div>    
+<div id="heo-footer">
+    
+        <div class="footer-group">
+            <h3 class="footer-title">导航</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" href="/archives/" title="文章归档" rel="noopener external nofollow noreferrer">文章归档</a>
+                
+                    <a class="footer-item" href="/categories/" title="文章分类" rel="noopener external nofollow noreferrer">文章分类</a>
+                
+                    <a class="footer-item" href="/tags/" title="文章标签" rel="noopener external nofollow noreferrer">文章标签</a>
+                
+                    <a class="footer-item" href="/link/" title="友链" rel="noopener external nofollow noreferrer">友链</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">Acrylic</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://acrylic.zhheo.com/" title="主题官网" rel="noopener external nofollow noreferrer noopener">主题官网</a>
+                
+                    <a class="footer-item" target="_blank" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic" title="Github" rel="noopener external nofollow noreferrer noopener">Github</a>
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">推荐友链</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                
+                    <a class="footer-item" target="_blank" href="https://akilar.top" title="Akilar" rel="noopener external nofollow noreferrer noopener">Akilar</a>
+                    
+            </div>
+        </div>
+    
+    
+</div>
+<div id="footer-section">
+    <div class="footer-section-links">
+        <div class="footer-section-left">
+            <div id="footer-section-tips">
+                <div class="copyright">©2023 - 2026 By 
+                    <a class="footer-section-link" href="/" rel="external nofollow">Melo</a>
+                    <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section-right">
+            <a class="footer-section-link" href="/rss/">订阅</a>
+            
+            <a class="footer-section-link cc" target="_blank" href="https://creativecommons.org/licenses/by/4.0/" title="cc协议">
+                <i class="fa-solid fa-closed-captioning"></i>
+            </a>
+        </div>
+    </div>
+</div>
+                </footer>
+            </div>
+         
+        <div>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    
+
+<script src="/lib/pjax.min.js"></script>
+
+
+
+<script src="/lib/snackbar.min.js"></script>
+
+
+    
+<script src="/lib/view-image.min.js"></script>
+
+
+
+<div id="js-pjax">
+    
+    
+        <script async src="https://npm.elemecdn.com/penndu@1.0.0/bsz.js"></script>
+     
+</div>
+
+
+    
+<script src="/js/extend/covercolor/web.js"></script>
+
+        
+
+
+    <script>
+  let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax'
+  ]
+  
+  const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+  })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+</script>
+    
+</div>
+        
+     
+        <div class="needEndHide" id="nav-music" onclick="acrylic.musicToggle()">
+    <div id="nav-music-hoverTips">音乐已暂停</div>
+    <meting-js id="1708664797" server="tencent" type="playlist" mutex="true"
+        preload="none" data-lrctype="0" order="random" theme="var(--heo-main)"></meting-js>
+</div>
+    
+    </body>
+</html>
+<script>const posts=["2026/01/24/基于IssacGym的人物交互RL仿真/","2026/01/19/基于SAM的分割与单目深度估计/","2026/01/19/旋转矩阵与李群李代数/","2026/01/15/VLN Simulator Habitat 环境安装与入门/","2024/08/18/docker-one/","2024/06/13/future-think/","2024/02/28/Django-two/","2023/12/04/git_multiusers/","2023/10/04/Django-one/","2023/09/05/java-note/","2023/07/06/how-to-write-in-hexo/"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>
