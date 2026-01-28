@@ -366,7 +366,9 @@
 <h3 id="Mimic作为一个Unified-Reward"><a href="#Mimic作为一个Unified-Reward" class="headerlink" title="Mimic作为一个Unified Reward"></a>Mimic作为一个Unified Reward</h3><p>在DRL刚开始被大家开始做的时候，一些比较有代表性的工作比如AlphaGo（几乎没有人类可以打败），虽然通过大量的episode训练，但是其实reward设计是非常复杂的。这在Avatar Motion方面也是如此，当时做动画动作生成，一般都是使用Dynamics Model，就跟对某一个任务的reward设计一样，这些model用来设计一些特定的动作，比如奔跑，翻转等。但是如果需要新加动作就需要新的模型来支持，这是非常耗费人力的。所以DeepMimic的思路就是，虽然我做每个动作的reward function都是不同的，但是对于motion tracking来说，我只需要保证agent在每个时刻与我们所期待的动作（也就是类似人类的动作）一致，那么我们可以将reward设计成一个unified reward function，reward就根据当前agent各个关节位置与输入指导数据（一般是动作捕捉数据）之间的差异来计算，这样不仅各个动作的function可以统一而且这样可以避免一些sparse reward，然后通过训练这个reward function来学习agent所期待的动作。<br>在王建明的podcast中，Jason也提到了，比较强化学习和模仿学习是不太好比较的，因为模仿学习可以是一般范式，你可以用类似监督学习的方法来teacher-student训练，也可以通过强化学习来实现模仿（比如这里的Motion Tracking）。</p>
 <h3 id="AMP将单纯的动作数值误差转为分布的误差"><a href="#AMP将单纯的动作数值误差转为分布的误差" class="headerlink" title="AMP将单纯的动作数值误差转为分布的误差"></a>AMP将单纯的动作数值误差转为分布的误差</h3><p>其中GAN中descriminator的loss定义为数据集中状态转移对上，D函数将状态转移变为一个概率分布，通过loss来约束使得两者分布接近。同时reward也做了处理来让policy输出的状态转移分布更接近真实数据集的分数<br><img src="/../medias/robo/amp_des.png" alt="GAN"><br>并且在policy输出的action中，action被编码之后送给PID控制器（这里I为0所以实际为PD控制器），然后关节旋转施加力矩得到新的state。</p>
 <h3 id="CooHOI-优化Cooperative-Humanoid-Task"><a href="#CooHOI-优化Cooperative-Humanoid-Task" class="headerlink" title="CooHOI 优化Cooperative Humanoid Task"></a>CooHOI 优化Cooperative Humanoid Task</h3><p>相对于AMP，CooHOI的MDP可以看做的是Partial Observation。其实每个agent的observation是local而不是全局的，所以在后面多agent任务的时候，作者优化了agent的local observation，使得agent更关注自己搬运物体的一角。还有一点CooHOI divide training into two-phase，先是基于AMP训练一个单agent完成定义好的task的策略，之后基于这个策略进行多agent任务训练。因为是POMDP，所以每个agent都可以用这个policy来与环境交互，同时可以从多agent得到梯度回传，用MAPPO进行梯度优化。</p>
-<h3 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h3><p>单agent<br><img src="/../medias/robo/coohoi_eval_single.gif" alt="single agent"><br>多agent<br><img src="/../medias/robo/coohoi_eval_multi.gif" alt="multi agent"><br>当我们在执行命令中不加载checkpoint的时候，模型会默认加载Base checkpoint，也就是没训练的策略<br>CUDA_VISIBLE_DEVICES&#x3D;0 python coohoi&#x2F;run.py –test <br>–task ShareHumanoidCarryObject <br>–num_envs 16 <br>–cfg_env coohoi&#x2F;data&#x2F;cfg&#x2F;share_humanoid_carrybox.yaml <br>–cfg_train coohoi&#x2F;data&#x2F;cfg&#x2F;train&#x2F;share_humanoid_task_coohoi.yaml <br>–motion_file coohoi&#x2F;data&#x2F;motions&#x2F;coohoi_data&#x2F;coohoi_data.yaml <br><img src="/../medias/robo/coohoi_eval_scratch.gif" alt="Scratch"></p>
+<h3 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h3><p>单agent<br><img src="/../medias/robo/coohoi_eval_single.gif" alt="single agent"><br>多agent<br><img src="/../medias/robo/coohoi_eval_multi.gif" alt="multi agent"><br>当我们在执行命令中不加载checkpoint的时候，模型会默认加载Base checkpoint，也就是没训练的策略</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=0 python coohoi/run.py --<span class="built_in">test</span> \</span><br><span class="line">--task ShareHumanoidCarryObject \</span><br><span class="line">--num_envs 16 \</span><br><span class="line">--cfg_env coohoi/data/cfg/share_humanoid_carrybox.yaml \</span><br><span class="line">--cfg_train coohoi/data/cfg/train/share_humanoid_task_coohoi.yaml \</span><br><span class="line">--motion_file coohoi/data/motions/coohoi_data/coohoi_data.yaml \</span><br></pre></td></tr></table></figure>
+<p><img src="/../medias/robo/coohoi_eval_scratch.gif" alt="Scratch"></p>
 <h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p>我们这里主要从Scratch开始训练，由于算力和训练时长只训练一个Single Agent策略，并且这里遇到了涉及到<code>wandb的断点续训以及API_KEY的一些bug</code>，后面我会继续写个blog来介绍怎么做<br><img src="/../medias/robo/coohoi_train_single.png" alt="training curve"><br>后面我们对训练出来的policy做一些评估，发现agent的行为还有些问题，在行走和搬运的时候，抬物体是没问题的，放物体还有一些问题。<br><img src="/../medias/robo/coohoi_trainging_eval_single.gif" alt="evaluation"></p>
 
         </article>
@@ -612,22 +614,22 @@
                 <footer id="footer">
                     <div id="footer_deal">
     
-        <a class="deal_link" target="_blank" href="https://github.com/ToughMamba" rel="external nofollow noopener" title="Github">
+        <a class="deal_link" target="_blank" href="https://github.com/Jiaxi-Huang" rel="external nofollow noopener" title="Github">
             <i class="fa-brands fa-github"></i>
         </a>
     
-        <a class="deal_link" href="/AboutMe/index.html" rel="external nofollow" title="Mail">
+        <a class="deal_link" href="mailto:huangjiaxi111@gmail.com" rel="external nofollow" title="Mail">
             <i class="fa-solid fa-envelope"></i>
         </a>
     
     <img class="footer_mini_logo" src="/img/avatar.webp"
         title="返回顶部" onclick="acrylic.toTop()">
     
-        <a class="deal_link" target="_blank" href="https://y.qq.com/n/ryqq/playlist/2767219227" rel="external nofollow noopener" title="music">
+        <a class="deal_link" target="_blank" href="https://open.spotify.com/user/316uiogi5afmgan63f4l3ovd6uxa" rel="external nofollow noopener" title="music">
             <i class="fa-solid fa-music"></i>
         </a>
     
-        <a class="deal_link" target="_blank" href="https://space.bilibili.com/507532901?spm_id_from=333.1007.0.0" rel="external nofollow noopener" title="bilibili">
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com/507532901" rel="external nofollow noopener" title="bilibili">
             <i class="fa-brands fa-bilibili"></i>
         </a>
     
