@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>基于语言与视觉模型的分层导航规划 | Melo&#39;s Blog</title>
+<noscript>开启Javascript是必要的</noscript>
+<link rel="icon" type="image/x-icon" href="/img/avatar.webp">
+<link rel="apple-touch-icon" href="/img/avatar.webp">
+<meta name="apple-mobile-web-app-title" content="Melo&#39;s Blog">
+<link rel="bookmark" href="/img/avatar.webp">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/avatar.webp">
+<meta name="description" content="">
+<meta name="theme-color" content="#1C1C1F">
+<link rel="stylesheet" href="/css/var.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+    <script data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/pace/1.2.4/pace.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+
+<link rel="stylesheet" href="/lib/snackbar.min.css">
+
+
+<script src="/lib/qrcode.min.js"></script>
+
+
+
+
+
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-7-1 18:00:00","lazyload":{"enable":false,"error":"/img/acrylic.png"},"hightlight":{"enable":true,"limit":250},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":false,"comment":{"enable":false,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body id="body">
+        
+        <div id="console" style="zoom: 1;" class="">
+    <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
+        <i class="fas fa-circle-xmark"></i>
+    </div>
+    
+        <div class="console-card-group">
+            <div class="console-card-group-left">
+                <div class="console-card" id="card-newest-comments" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">互动</div>
+                        <div class="author-content-item-title">最新评论</div>
+                    </div>
+                    <div class="aside-list"></div>
+                </div>
+    
+            </div>
+            <div class="console-card-group-right">
+                <div class="console-card tags" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">标签</div>
+                        <div class="author-content-item-title">寻找感兴趣的领域</div>
+                    </div>
+                    <div class="card-tag-cloud">
+                        
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 0.8rem; color: #d3d3d3">学习<sup>2</sup></a>
+                        
+                            <a href="/tags/Django/" style="font-size: 0.8rem; color: #d3d3d3">Django<sup>2</sup></a>
+                        
+                            <a href="/tags/git/" style="font-size: 0.8rem; color: #d3d3d3">git<sup>1</sup></a>
+                        
+                            <a href="/tags/%E8%87%AA%E7%9C%81/" style="font-size: 0.8rem; color: #d3d3d3">自省<sup>1</sup></a>
+                        
+                            <a href="/tags/Docker/" style="font-size: 0.8rem; color: #d3d3d3">Docker<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%85%B7%E8%BA%AB/" style="font-size: 0.8rem; color: #d3d3d3">具身<sup>1</sup></a>
+                        
+                            <a href="/tags/%E5%AF%BC%E8%88%AA/" style="font-size: 0.8rem; color: #d3d3d3">导航<sup>2</sup></a>
+                        
+                            <a href="/tags/Robotics/" style="font-size: 0.8rem; color: #d3d3d3">Robotics<sup>4</sup></a>
+                        
+                            <a href="/tags/DataWhale/" style="font-size: 0.8rem; color: #d3d3d3">DataWhale<sup>6</sup></a>
+                        
+                            <a href="/tags/RL/" style="font-size: 0.8rem; color: #d3d3d3">RL<sup>2</sup></a>
+                        
+                    </div>
+                </div>
+                <div class="console-card history" onclick="acrylic.hideConsole()">
+                    <ul class="card-archive-list">
+    
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2026-01/')" data-pjax-state=""><span
+            class="card-archive-list-date">2026-01</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2024-08/')" data-pjax-state=""><span
+            class="card-archive-list-date">2024-08</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2024-06/')" data-pjax-state=""><span
+            class="card-archive-list-date">2024-06</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2024-02/')" data-pjax-state=""><span
+            class="card-archive-list-date">2024-02</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023-12/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023-12</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023-10/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023-10</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023-09/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023-09</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023-07/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023-07</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+        
+</ul>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="button-group">
+        <div class="console-btn-item"> <a class="darkmode_switchbutton" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow" data-pjax-state=""><i class="fas fa-moon"
+                    style="font-size: 1rem;"></i></a></div>
+        
+    </div>
+    <div class="console-mask" onclick="acrylic.hideConsole()" href="javascript:void(0);" rel="external nofollow"></div>
+</div>
+        <div id="sidebar" style="zoom: 1;">
+    <div id="menu-mask" style="display: none;"></div>
+    <div id="sidebar-menus" class>
+        <span class="sidebar-menu-item-title">功能</span>
+        <div class="sidebar-menu-item">
+            <a class="darkmode_switchbutton menu-child" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow">
+                <i class="fas fa-moon" style="font-size: 1rem;"></i>
+                <span>显示模式</span>
+            </a>
+        </div>
+        
+        <div class="menus_items">
+    
+</div>
+        <span class="sidebar-menu-item-title">标签</span>
+        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
+            <div class="item-headline">
+                <i class="fas fa-tags"></i>
+                <span>标签</span>
+            </div>
+            <div class="card-tag-cloud">
+                
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 1em; color: #d3d3d3">学习
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/Django/" style="font-size: 1em; color: #d3d3d3">Django
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/git/" style="font-size: 1em; color: #d3d3d3">git
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%87%AA%E7%9C%81/" style="font-size: 1em; color: #d3d3d3">自省
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/Docker/" style="font-size: 1em; color: #d3d3d3">Docker
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%85%B7%E8%BA%AB/" style="font-size: 1em; color: #d3d3d3">具身
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E5%AF%BC%E8%88%AA/" style="font-size: 1em; color: #d3d3d3">导航
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/Robotics/" style="font-size: 1em; color: #d3d3d3">Robotics
+                        <sup>4</sup>
+                    </a>
+                
+                    <a href="/tags/DataWhale/" style="font-size: 1em; color: #d3d3d3">DataWhale
+                        <sup>6</sup>
+                    </a>
+                
+                    <a href="/tags/RL/" style="font-size: 1em; color: #d3d3d3">RL
+                        <sup>2</sup>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+        
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
+    <nav id="nav" class="show">
+    <div id="nav-group">
+        <div id="blog_name">
+            
+            <a id="site-name" href="/" title="返回博客主页">
+                    
+                        <span class="heoicon">主页</span>
+                    
+            </a>
+        </div>
+        <div id="page-name-mask">
+            <div id="page-name">
+                <a id="page-name-text" onclick="acrylic.toTop()">基于语言与视觉模型的分层导航规划</a>
+            </div>
+        </div>
+        <div id="menus">
+            <div class="menus_items">
+    
+</div>
+        </div>
+        <!-- <div id="nav-left">
+            <div id="fps-group">
+                <div id="fps">145</div><span class="fpsText">FPS</span>
+            </div>
+        </div> -->
+        <div id="nav-right">
+            
+
+    <div class="nav-button" id="randomPost_button">
+        <a class="site-page" onclick="toRandomPost()"
+            title="随机前往一个文章">
+            <i class="fas fa-shuffle" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+
+    <div class="nav-button" id="nav-console">
+        <a class="console_switchbutton" onclick="acrylic.showConsole()"
+        title="显示中控台" href="javascript:void(0);" rel="external nofollow">
+        <i class="fas fa-bars-progress" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+<div class="nav-button" id="nav-totop" onclick="acrylic.toTop()">
+    <a class="totopbtn">
+        <i class="fas fa-arrow-up"></i>
+        <span id="percent">0</span>
+    </a>
+</div>
+<div id="toggle-menu">
+    <a class="site-page">
+        <i class="fas fa-bars fa-fw" style="font-size: 1rem;"></i>
+    </a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="/medias/airsim/cocacola.png" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/%E5%AF%BC%E8%88%AA/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">导航</span>
+                        </a>
+                    
+                        <a class="post-meta__tags" href="/tags/DataWhale/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">DataWhale</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">基于语言与视觉模型的分层导航规划</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2026-01-31T22:39:00+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为成都">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>成都</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <h3 id="安装过程注意与避雷"><a href="#安装过程注意与避雷" class="headerlink" title="安装过程注意与避雷"></a>安装过程注意与避雷</h3><p>本次DateWhale提供的Simulator环境基于<code>Airsim(Unity)</code>构建，因为本身以及提供了exe可执行文件所以首先考虑在windows上运行，但是因为用到的<code>GroundingDINO</code>代码库已经archived，然后涉及到的cuda版本可能也有点老旧，包括依赖的一些库，也有一些需要做处理，下面是一些需要特别注意的点:</p>
+<ul>
+<li>构建<code>groundingDINO</code>时,因为<code>setup.py</code>里面有用到<code>torch</code>和<code>cuda</code>直接构建必须保证pytorch和cuda版本对应，参考我这里cuda为11.8,对应的torch版本为torch2.0.1+cu118</li>
+<li>在构建时，如果报错，可以尝试隔离依赖<code>--no-build-isolation</code>，但是注意后面要把相关的依赖下回来</li>
+<li><code>external-libraries</code>中<code>tornado4</code>的代码有点问题，需要到<code>pypi</code>里面找到<code>tornado4.5.3</code>源代码替换，不然可能会报错<code>No Module Named &#39;tornado4.util&#39;</code>，因为原来的文件里面没有util文件</li>
+<li>对应torch版本较低的情况，比如像我这里的torch2.0.1+cu118，需要将Numpy降到1.X,通过<code>pip install numpy&lt;2.0</code><br><img src="/../medias/airsim/numpy_error.png" alt="numpy_error"><br><img src="/../medias/airsim/numpy_fixed.png" alt="numpy_fixed"></li>
+</ul>
+<h3 id="GroundingDINO"><a href="#GroundingDINO" class="headerlink" title="GroundingDINO"></a>GroundingDINO</h3><p>GroundingDINO 是一个结合了 DINO（DEtection with Improved NOtations）和 Grounded Pre-Training 的开放集目标检测模型。它旨在通过将图像和文本对作为输入，实现对任何对象的检测和识别。注意这里的DINO不是指视觉自监督的DINO，而是<code>DETR with Improved deNoising anchOr Boxes</code>，通过 Transformer 解码器实现了图像和文本之间的跨模态对齐。GroundingDINO 的主要贡献在于将 DINO 的强大视觉特征提取能力与基于文本的 Grounded Pre-Training 相结合，从而实现了开放集目标检测的强大性能。DINO 在其中起到了关键作用，提供了高效的视觉特征提取和跨模态对齐能力，使模型能够灵活地根据语言提示检测任意目标。<br><img src="/../medias/airsim/groundingDINO.png" alt="groundingDINO"></p>
+<h3 id="LLM-as-a-guided-planner"><a href="#LLM-as-a-guided-planner" class="headerlink" title="LLM as a guided planner"></a>LLM as a guided planner</h3><p>理论上我们用LLM在最顶层做规划，所以无论用什么LLM都是可以的，只要遵循给出的prompt，所以我们略微修改一下main_gradio里的代码</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> openai</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">from</span> robot_library <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> httpx</span><br><span class="line"><span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI</span><br><span class="line"><span class="keyword">import</span> gradio <span class="keyword">as</span> gr</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;--prompt&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&quot;prompts.txt&quot;</span>)</span><br><span class="line">parser.add_argument(<span class="string">&quot;--sysprompt&quot;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, default=<span class="string">&quot;system_prompts.txt&quot;</span>)</span><br><span class="line">args = parser.parse_args()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Initializing ChatGPT...&quot;</span>)</span><br><span class="line"><span class="comment">#修改为第三方，支持多个模型切换</span></span><br><span class="line">client = OpenAI(api_key=<span class="string">&quot;xxxxxx&quot;</span>, base_url=<span class="string">&quot;https://api.siliconflow.cn/v1&quot;</span>, http_client=httpx.Client(verify=<span class="literal">False</span>))</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(args.sysprompt, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    sysprompt = f.read()</span><br><span class="line"></span><br><span class="line">chat_history = [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>,</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: sysprompt</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>,</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: <span class="string">&quot;move 10 units up&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;role&quot;</span>: <span class="string">&quot;assistant&quot;</span>,</span><br><span class="line">        <span class="string">&quot;content&quot;</span>: <span class="string">&quot;&quot;&quot;```python</span></span><br><span class="line"><span class="string">aw.fly_to([aw.get_drone_position()[0], aw.get_drone_position()[1], aw.get_drone_position()[2]+10])</span></span><br><span class="line"><span class="string">This code uses the `fly_to()` function to move the drone to a new position that is 10 units up from the current position. It does this by getting the current position of the drone using `get_drone_position()` and then creating a new list with the same X and Y coordinates, but with the Z coordinate increased by 10. The drone will then fly to this new position using `fly_to()`.&quot;&quot;&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ask</span>(<span class="params">prompt</span>):</span><br><span class="line">    chat_history.append(</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>,</span><br><span class="line">            <span class="string">&quot;content&quot;</span>: prompt,</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    completion = client.chat.completions.create(</span><br><span class="line">        model=<span class="string">&quot;deepseek-ai/DeepSeek-R1&quot;</span>,</span><br><span class="line">        messages=chat_history,</span><br><span class="line">        temperature=<span class="number">0</span></span><br><span class="line">    )</span><br><span class="line">    chat_history.append(</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;role&quot;</span>: <span class="string">&quot;assistant&quot;</span>,</span><br><span class="line">            <span class="string">&quot;content&quot;</span>: completion.choices[<span class="number">0</span>].message.content,</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> chat_history[-<span class="number">1</span>][<span class="string">&quot;content&quot;</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Done.&quot;</span>)</span><br><span class="line"></span><br><span class="line">code_block_regex = re.<span class="built_in">compile</span>(<span class="string">r&quot;```(.*?)```&quot;</span>, re.DOTALL)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extract_python_code</span>(<span class="params">content</span>):</span><br><span class="line">    code_blocks = code_block_regex.findall(content)</span><br><span class="line">    <span class="keyword">if</span> code_blocks:</span><br><span class="line">        full_code = <span class="string">&quot;\n&quot;</span>.join(code_blocks)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> full_code.startswith(<span class="string">&quot;python&quot;</span>):</span><br><span class="line">            full_code = full_code[<span class="number">7</span>:]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> full_code</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Initializing AirSim...&quot;</span>)</span><br><span class="line">aw = AirSimWrapper()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Done.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(args.prompt, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    prompt = f.read()</span><br><span class="line"></span><br><span class="line">ask(prompt)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Welcome to the AirSim chatbot! I am ready to help you with your AirSim questions and commands.&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">display_image</span>(<span class="params">img</span>):</span><br><span class="line">    im = cv2.imread(<span class="string">&quot;groundingdino.png&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> im</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> gr.Blocks() <span class="keyword">as</span> demo:</span><br><span class="line">    <span class="comment"># gr.Markdown(&quot;# 无人机多模态大语言模型&quot;)</span></span><br><span class="line">    gr.Markdown(<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">                # 无人机多模态大语言模型</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">                无人机多模态大语言模型利用了Deepseek大语言模型+Grounding DINO的多模态开域识别功能，形成自我感知到自主行为的闭环。</span></span><br><span class="line"><span class="string">                1. Grounding DINO为开放识别大模型，可以返回环境中的各种物体的标签以及位置信息。</span></span><br><span class="line"><span class="string">                2. Deepseek根据Prompt处理用户输入，并自主生成无人机可执行的代码，完成相关任务。</span></span><br><span class="line"><span class="string">                &quot;&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> gr.Row():</span><br><span class="line">        <span class="keyword">with</span> gr.Column():</span><br><span class="line">            chatbot = gr.Chatbot()</span><br><span class="line">            msg = gr.Textbox()</span><br><span class="line">            clear = gr.ClearButton([msg, chatbot])</span><br><span class="line">            <span class="keyword">def</span> <span class="title function_">respond</span>(<span class="params">message, chat_history</span>):</span><br><span class="line">                response = ask(message)</span><br><span class="line">                bot_message = response</span><br><span class="line">                <span class="comment">#完善history结构</span></span><br><span class="line">                chat_history.append(&#123;<span class="string">&quot;role&quot;</span>:<span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: message&#125;)</span><br><span class="line">                chat_history.append(&#123;<span class="string">&quot;role&quot;</span>:<span class="string">&quot;assistant&quot;</span>, <span class="string">&quot;content&quot;</span>: bot_message&#125;)</span><br><span class="line">                code = extract_python_code(response)</span><br><span class="line">                <span class="keyword">if</span> code <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;Please wait while I run the code in AirSim...&quot;</span>)</span><br><span class="line">                    <span class="built_in">exec</span>(extract_python_code(response))</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;Done!\n&quot;</span>)</span><br><span class="line">                <span class="comment"># time.sleep(2)</span></span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;&quot;</span>, chat_history</span><br><span class="line">            msg.submit(respond, [msg, chatbot], [msg, chatbot])</span><br><span class="line">        <span class="keyword">with</span> gr.Column():</span><br><span class="line">            img = gr.Image(<span class="string">&quot;datawhale.jpg&quot;</span>)</span><br><span class="line">            image_button = gr.Button(<span class="string">&quot;Display&quot;</span>)</span><br><span class="line">        image_button.click(display_image, inputs=img, outputs=img)</span><br><span class="line">demo.launch()</span><br></pre></td></tr></table></figure>
+<p>同时我们可以看到，在system_prompts中，告诉了LLM涉及到airsim的一些指令以及obj_name_list，所以如果指定的物体不在obj_name_list中，LLM会返回让你输入正确的物体</p>
+<h3 id="AirSim接口"><a href="#AirSim接口" class="headerlink" title="AirSim接口"></a>AirSim接口</h3><p>在实际代码中，我们通过<code>MultirotorClient</code>与打开的house_win.exe进行通信，从而控制无人机。实际在里面比较重要的函数就是调用groundingDINO并且处理返回的结果，从而得到有效的指令</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">ob_objects</span>(<span class="params">self,obj_name_list</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    注意需要先执行get_image，</span></span><br><span class="line"><span class="string">    在图像 img 上运行对象检测模型，获得目标列表 [ &lt;对象名称、距离、角度（以度为单位）&gt;,...]</span></span><br><span class="line"><span class="string">    :return:对象名称列表、对象信息列表、bbox图</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    TEXT_PROMPT = <span class="string">&quot; | &quot;</span>.join(obj_name_list)</span><br><span class="line">    <span class="comment">#目标检测</span></span><br><span class="line">    imgbytes = cv2.imencode(<span class="string">&quot;.jpg&quot;</span>, self.img)[<span class="number">1</span>].tobytes()</span><br><span class="line">    byte_stream = io.BytesIO(imgbytes)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    image_source, image = load_image(byte_stream)</span><br><span class="line">    </span><br><span class="line">    boxes, logits, phrases = predict(</span><br><span class="line">        model=self.dino_model,</span><br><span class="line">        image=image, </span><br><span class="line">        caption=TEXT_PROMPT,</span><br><span class="line">        box_threshold=BOX_TRESHOLD,</span><br><span class="line">        text_threshold=TEXT_TRESHOLD</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    h, w, _ = image_source.shape</span><br><span class="line">    boxes_unnorm = boxes * torch.Tensor([w, h, w, h])</span><br><span class="line">    boxes_xyxy = box_convert(boxes=boxes_unnorm, in_fmt=<span class="string">&quot;cxcywh&quot;</span>, out_fmt=<span class="string">&quot;xyxy&quot;</span>).numpy()</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#[xmin, ymin, xmax, ymax]</span></span><br><span class="line">    obj_locs = boxes_xyxy</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    final_obj_list = [] <span class="comment">#最终结果列表</span></span><br><span class="line">    <span class="comment">#构建目标结果</span></span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> bbox <span class="keyword">in</span> obj_locs:</span><br><span class="line">        center_x = <span class="built_in">int</span>((bbox[<span class="number">0</span>] + bbox[<span class="number">2</span>]) / <span class="number">2</span>)</span><br><span class="line">        center_y = <span class="built_in">int</span>((bbox[<span class="number">1</span>] + bbox[<span class="number">3</span>]) / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        depth_distance = self.img_depth_planar[center_y, center_x, ] <span class="comment">#相平面距离</span></span><br><span class="line">        camera_distance = self.img_depth_perspective[center_y, center_x] <span class="comment">#相机距离</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#求角度</span></span><br><span class="line">        angel = math.acos(depth_distance / camera_distance)</span><br><span class="line">        angel_degree = math.degrees(angel)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 判断正负，左边为正，右边为负，只看偏航角</span></span><br><span class="line">        <span class="keyword">if</span> center_x &lt; self.img.shape[<span class="number">1</span>] / <span class="number">2</span>:</span><br><span class="line">            <span class="comment"># 如果目标在图像的左侧，向左转，degree 为负数</span></span><br><span class="line">            angel_degree = -<span class="number">1</span> * angel_degree</span><br><span class="line"></span><br><span class="line">        obj_name =  phrases[index]<span class="comment">#获得目标名称，可能有多个</span></span><br><span class="line"></span><br><span class="line">        obj_info = (obj_name, camera_distance, depth_distance, angel_degree, center_x, center_y)</span><br><span class="line">        final_obj_list.append(obj_info)</span><br><span class="line">        index = index + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#画框</span></span><br><span class="line">    <span class="comment">#annotated_frame：cv2的图片，image_source：pil图片</span></span><br><span class="line">    annotated_frame = annotate(image_source=image_source, boxes=boxes, logits=logits, phrases=phrases)</span><br><span class="line">    </span><br><span class="line">    final_result = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> obj_info <span class="keyword">in</span> final_obj_list:</span><br><span class="line">        item = (obj_info[<span class="number">0</span>], obj_info[<span class="number">1</span>], obj_info[<span class="number">3</span>]) <span class="comment">#obj_name, camera_distance, angel_degree</span></span><br><span class="line">        final_result.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> final_result</span><br></pre></td></tr></table></figure>
+
+<h4 id="从图像到指令：目标检测与空间计算详解"><a href="#从图像到指令：目标检测与空间计算详解" class="headerlink" title="从图像到指令：目标检测与空间计算详解"></a>从图像到指令：目标检测与空间计算详解</h4><p><code>ob_objects</code> 函数是整个无人机感知系统的核心，它负责将原始图像转换为可供 LLM 决策的结构化目标信息。以下是其完整的工作流程：</p>
+<p><strong>1. 构建文本提示词（Text Prompt）</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TEXT_PROMPT = <span class="string">&quot; | &quot;</span>.join(obj_name_list)</span><br></pre></td></tr></table></figure>
+
+<p>将系统预设的对象名称列表（如 <code>[&quot;chair&quot;, &quot;table&quot;, &quot;yellow duck&quot;]</code>）用 <code>&quot; | &quot;</code> 连接成 GroundingDINO 可识别的提示词格式。这种格式让模型能够同时检测多个类别的目标。</p>
+<p><strong>2. 图像编码与预处理</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">imgbytes = cv2.imencode(<span class="string">&quot;.jpg&quot;</span>, self.img)[<span class="number">1</span>].tobytes()</span><br><span class="line">byte_stream = io.BytesIO(imgbytes)</span><br><span class="line">image_source, image = load_image(byte_stream)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>cv2.imencode</code> 将 OpenCV 读取的 BGR 图像编码为 JPG 字节流</li>
+<li><code>load_image</code> 将字节流转换为 PIL Image 和 PyTorch Tensor，供模型推理使用</li>
+<li><code>image_source</code> 是原始 PIL 图像，用于后续可视化；<code>image</code> 是模型输入的张量</li>
+</ul>
+<p><strong>3. GroundingDINO 目标检测</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">boxes, logits, phrases = predict(</span><br><span class="line">    model=self.dino_model,</span><br><span class="line">    image=image,</span><br><span class="line">    caption=TEXT_PROMPT,</span><br><span class="line">    box_threshold=BOX_TRESHOLD,</span><br><span class="line">    text_threshold=TEXT_TRESHOLD</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>boxes</code>: 检测框坐标，格式为 <code>(cx, cy, w, h)</code> 的归一化坐标（0-1范围）</li>
+<li><code>logits</code>: 每个检测框的置信度分数</li>
+<li><code>phrases</code>: 检测到的对象类别名称</li>
+<li><code>BOX_TRESHOLD</code> 和 <code>TEXT_TRESHOLD</code> 分别是检测框和文本匹配的阈值，过滤低置信度结果</li>
+</ul>
+<p><strong>4. 坐标格式转换</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h, w, _ = image_source.shape</span><br><span class="line">boxes_unnorm = boxes * torch.Tensor([w, h, w, h])</span><br><span class="line">boxes_xyxy = box_convert(boxes=boxes_unnorm, in_fmt=<span class="string">&quot;cxcywh&quot;</span>, out_fmt=<span class="string">&quot;xyxy&quot;</span>).numpy()</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>转换步骤</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>反归一化</td>
+<td>将 <code>[0,1]</code> 范围的相对坐标乘以图像宽高，得到像素级坐标</td>
+</tr>
+<tr>
+<td>格式转换</td>
+<td><code>cxcywh</code> (中心点+宽高) → <code>xyxy</code> (左上角+右下角)</td>
+</tr>
+</tbody></table>
+<p>转换后 <code>boxes_xyxy</code> 的形状为 <code>[[xmin, ymin, xmax, ymax], ...]</code>，便于计算目标中心点。</p>
+<p><strong>5. 距离计算：深度图的作用</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">center_x = <span class="built_in">int</span>((bbox[<span class="number">0</span>] + bbox[<span class="number">2</span>]) / <span class="number">2</span>)</span><br><span class="line">center_y = <span class="built_in">int</span>((bbox[<span class="number">1</span>] + bbox[<span class="number">3</span>]) / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">depth_distance = self.img_depth_planar[center_y, center_x]      <span class="comment"># 相平面距离（Z轴）</span></span><br><span class="line">camera_distance = self.img_depth_perspective[center_y, center_x] <span class="comment"># 欧氏距离</span></span><br></pre></td></tr></table></figure>
+
+<p>AirSim 提供两种深度图：</p>
+<ul>
+<li><strong><code>img_depth_planar</code></strong> (Planar Depth)：相机平面到物体的垂直距离（即 Z 轴深度）</li>
+<li><strong><code>img_depth_perspective</code></strong> (Perspective Depth)：相机光心到物体的实际欧氏距离</li>
+</ul>
+<p>两者的几何关系如图所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">      目标物体</span><br><span class="line">        *</span><br><span class="line">       /|</span><br><span class="line">      / |</span><br><span class="line">欧氏距离 | Z轴深度 (planar)</span><br><span class="line">    /   |</span><br><span class="line">   /    |</span><br><span class="line">  *-----+</span><br><span class="line"> 相机</span><br></pre></td></tr></table></figure>
+
+<p><strong>6. 角度计算：确定水平方向</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">angel = math.acos(depth_distance / camera_distance)</span><br><span class="line">angel_degree = math.degrees(angel)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断左右：目标在图像左半部分则角度为负（向左转）</span></span><br><span class="line"><span class="keyword">if</span> center_x &lt; self.img.shape[<span class="number">1</span>] / <span class="number">2</span>:</span><br><span class="line">    angel_degree = -<span class="number">1</span> * angel_degree</span><br></pre></td></tr></table></figure>
+
+<p>利用三角函数关系计算偏航角：</p>
+<ul>
+<li><code>cos(θ) = 邻边 / 斜边 = depth_distance / camera_distance</code></li>
+<li><code>θ = arccos(depth_distance / camera_distance)</code></li>
+</ul>
+<p>图像坐标与转向关系：</p>
+<ul>
+<li>目标在图像<strong>左侧</strong> (<code>center_x &lt; width/2</code>)：无人机需要<strong>向左转</strong>，角度为<strong>负值</strong></li>
+<li>目标在图像<strong>右侧</strong>：无人机需要<strong>向右转</strong>，角度为<strong>正值</strong></li>
+</ul>
+<p><strong>7. 结果结构化</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj_info = (obj_name, camera_distance, depth_distance, angel_degree, center_x, center_y)</span><br><span class="line">final_result.append((obj_name, camera_distance, angel_degree))</span><br></pre></td></tr></table></figure>
+
+<p>最终返回的 <code>final_result</code> 是一个列表，每个元素为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(obj_name: <span class="built_in">str</span>,      <span class="comment"># 目标名称，如 &quot;yellow duck&quot;</span></span><br><span class="line"> camera_distance: <span class="built_in">float</span>,  <span class="comment"># 距离（米）</span></span><br><span class="line"> angel_degree: <span class="built_in">float</span>)     <span class="comment"># 水平偏航角（度），左负右正</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>8. 可视化反馈</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">annotated_frame = annotate(image_source=image_source, boxes=boxes, logits=logits, phrases=phrases)</span><br></pre></td></tr></table></figure>
+
+<p>生成带检测框和标签的标注图像，保存为 <code>groundingdino.png</code>，供 Gradio 界面显示和调试使用。</p>
+<p><strong>完整数据流总结</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────┐    ┌──────────────┐    ┌─────────────┐    ┌──────────────┐</span><br><span class="line">│  原始图像    │ →  │ GroundingDINO │ →  │  深度图查询  │ →  │  结构化结果   │</span><br><span class="line">│  + 文本提示  │    │   目标检测    │    │  + 角度计算  │    │ (距离+方向)  │</span><br><span class="line">└─────────────┘    └──────────────┘    └─────────────┘    └──────────────┘</span><br></pre></td></tr></table></figure>
+
+<p>这个流程让 LLM 能够理解环境中的目标分布，例如：</p>
+<ul>
+<li>“yellow duck 在 5.2 米、偏左 15 度方向” → LLM 生成 <code>turn_left(15)</code> 和 <code>move_forward(5.2)</code> 指令</li>
+<li>“coca cola 在 3.8 米、偏右 30 度方向” → LLM 生成 <code>turn_right(30)</code> 和 <code>move_forward(3.8)</code> 指令</li>
+</ul>
+<h3 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h3><ul>
+<li>起飞<br><img src="/../medias/airsim/fly.png" alt="fly"></li>
+<li>寻找yellow duck并飞到它的面前<br><img src="/../medias/airsim/yellowduck.png" alt="yellowduck"></li>
+<li>后退3米<br><img src="/../medias/airsim/back.png" alt="back"></li>
+<li>寻找coca cola并飞到它的面前<br><img src="/../medias/airsim/cocacola.png" alt="cocacola"></li>
+</ul>
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="https://melohuang7.github.io/2026/01/31/%E5%9F%BA%E4%BA%8E%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%A7%86%E8%A7%89%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E5%B1%82%E5%AF%BC%E8%88%AA%E8%A7%84%E5%88%92/">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "https://melohuang7.github.io/2026/01/31/%E5%9F%BA%E4%BA%8E%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%A7%86%E8%A7%89%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E5%B1%82%E5%AF%BC%E8%88%AA%E8%A7%84%E5%88%92/");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=基于语言与视觉模型的分层导航规划&amp;url=https://melohuang7.github.io/2026/01/31/%E5%9F%BA%E4%BA%8E%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%A7%86%E8%A7%89%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E5%B1%82%E5%AF%BC%E8%88%AA%E8%A7%84%E5%88%92/&amp;pic=/medias/airsim/cocacola.png"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/%E5%AF%BC%E8%88%AA/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                导航
+                                <span class="tagsPageCount">2</span>
+                            </a>
+                        
+                            <a href="/tags/DataWhale/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                DataWhale
+                                <span class="tagsPageCount">6</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>基于语言与视觉模型的分层导航规划</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/2026/01/31/%E5%9F%BA%E4%BA%8E%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%A7%86%E8%A7%89%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E5%B1%82%E5%AF%BC%E8%88%AA%E8%A7%84%E5%88%92/">https://melohuang7.github.io/2026/01/31/%E5%9F%BA%E4%BA%8E%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%A7%86%E8%A7%89%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E5%B1%82%E5%AF%BC%E8%88%AA%E8%A7%84%E5%88%92/</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">Melo&#39;s Blog</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        
+            <div class="next-post pull-full">
+                <a href="/2026/01/27/%E5%9F%BA%E4%BA%8E%E5%8D%95%E6%89%8B%E6%9F%84%E5%8D%95Lerobot%E6%9C%BA%E6%A2%B0%E8%87%82%E8%AE%AD%E7%BB%83VLA/">
+                    <div class="pagination-info">
+                        <div class="label">下一篇</div>
+                        <div class="next_info">基于单手柄单Lerobot机械臂训练VLA</div>
+                    </div>
+                </a>
+            </div>
+                
+        
+    
+</nav>
+            
+    </div>
+    <div class="aside-content" id="aside-content">
+    
+    
+        
+        <div class="card-widget card-info">
+    <div class="card-content">
+        <div class="card-info-avatar is-center">
+            <div class="author-info__sayhi" id="author-info__sayhi">
+            </div>
+            <div class="author-info__name">
+                Melo
+            </div>
+            <div class="author-info__description">这有关于<b>开发与技术</b>、<b>学习与生活</b>的看法与分享，还有对于电影,音乐的一些<b>杂评</b>。<br>希望你可以在这里找到对你有用的知识和教程。</div>
+        </div>
+    </div>
+    <div class="banner-button-group">
+        <a class="banner-button" href="/">
+            <i class="fas fa-circle-chevron-right"></i>
+            <span class="banner-button-text">个人主页</span>
+        </a>
+    </div>
+    <div class="card-info-social-icons is-center">
+        
+            <a class="social-icon" target="_blank" rel="noopener" href="https://github.com/Jiaxi-Huang" title="Github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        
+            <a class="social-icon" href="mailto:huangjiaxi111@gmail.com" title="Mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        
+    </div>
+</div>
+     
+    
+    <div class="sticky_layout">
+        
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E6%B3%A8%E6%84%8F%E4%B8%8E%E9%81%BF%E9%9B%B7"><span class="toc-text">安装过程注意与避雷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GroundingDINO"><span class="toc-text">GroundingDINO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LLM-as-a-guided-planner"><span class="toc-text">LLM as a guided planner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AirSim%E6%8E%A5%E5%8F%A3"><span class="toc-text">AirSim接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8E%E5%9B%BE%E5%83%8F%E5%88%B0%E6%8C%87%E4%BB%A4%EF%BC%9A%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E4%B8%8E%E7%A9%BA%E9%97%B4%E8%AE%A1%E7%AE%97%E8%AF%A6%E8%A7%A3"><span class="toc-text">从图像到指令：目标检测与空间计算详解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="toc-text">效果展示</span></a></li></ol>
+    </div>
+</div>
+            
+        
+            
+        <div class="card-widget card-recent-post">
+    <div class="item-headline">
+        <i class="fas fa-list-ol"></i>
+        <span>最近发布</span>
+    </div>
+    <div class="aside-list">
+        
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2026/01/31/%E5%9F%BA%E4%BA%8E%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%A7%86%E8%A7%89%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E5%B1%82%E5%AF%BC%E8%88%AA%E8%A7%84%E5%88%92/" title="基于语言与视觉模型的分层导航规划">
+                    <img
+                        alt="基于语言与视觉模型的分层导航规划"
+                        src="/medias/airsim/cocacola.png">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2026/01/31/%E5%9F%BA%E4%BA%8E%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%A7%86%E8%A7%89%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E5%B1%82%E5%AF%BC%E8%88%AA%E8%A7%84%E5%88%92/" title="基于语言与视觉模型的分层导航规划">
+                        基于语言与视觉模型的分层导航规划
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2026/01/27/%E5%9F%BA%E4%BA%8E%E5%8D%95%E6%89%8B%E6%9F%84%E5%8D%95Lerobot%E6%9C%BA%E6%A2%B0%E8%87%82%E8%AE%AD%E7%BB%83VLA/" title="基于单手柄单Lerobot机械臂训练VLA">
+                    <img
+                        alt="基于单手柄单Lerobot机械臂训练VLA"
+                        src="/medias/lerobot/mujoco.jpg">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2026/01/27/%E5%9F%BA%E4%BA%8E%E5%8D%95%E6%89%8B%E6%9F%84%E5%8D%95Lerobot%E6%9C%BA%E6%A2%B0%E8%87%82%E8%AE%AD%E7%BB%83VLA/" title="基于单手柄单Lerobot机械臂训练VLA">
+                        基于单手柄单Lerobot机械臂训练VLA
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2026/01/24/%E5%9F%BA%E4%BA%8EIssacGym%E7%9A%84%E4%BA%BA%E7%89%A9%E4%BA%A4%E4%BA%92RL%E4%BB%BF%E7%9C%9F/" title="基于IssacGym的人物交互RL仿真">
+                    <img
+                        alt="基于IssacGym的人物交互RL仿真"
+                        src="/medias/robo/coohoi.png">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2026/01/24/%E5%9F%BA%E4%BA%8EIssacGym%E7%9A%84%E4%BA%BA%E7%89%A9%E4%BA%A4%E4%BA%92RL%E4%BB%BF%E7%9C%9F/" title="基于IssacGym的人物交互RL仿真">
+                        基于IssacGym的人物交互RL仿真
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2026/01/19/%E5%9F%BA%E4%BA%8ESAM%E7%9A%84%E5%88%86%E5%89%B2%E4%B8%8E%E5%8D%95%E7%9B%AE%E6%B7%B1%E5%BA%A6%E4%BC%B0%E8%AE%A1/" title="基于SAM的视觉理解分割与单目深度估计">
+                    <img
+                        alt="基于SAM的视觉理解分割与单目深度估计"
+                        src="/medias/sam/interactive.png">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2026/01/19/%E5%9F%BA%E4%BA%8ESAM%E7%9A%84%E5%88%86%E5%89%B2%E4%B8%8E%E5%8D%95%E7%9B%AE%E6%B7%B1%E5%BA%A6%E4%BC%B0%E8%AE%A1/" title="基于SAM的视觉理解分割与单目深度估计">
+                        基于SAM的视觉理解分割与单目深度估计
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2026/01/19/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9D%8E%E7%BE%A4%E6%9D%8E%E4%BB%A3%E6%95%B0/" title="旋转矩阵与李群李代数">
+                    <img
+                        alt="旋转矩阵与李群李代数"
+                        src="/medias/robo/matrix.jpg">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2026/01/19/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E4%B8%8E%E6%9D%8E%E7%BE%A4%E6%9D%8E%E4%BB%A3%E6%95%B0/" title="旋转矩阵与李群李代数">
+                        旋转矩阵与李群李代数
+                    </a>
+                </div>
+            </div>
+            
+    </div>
+</div>
+     
+        
+    </div>
+</div> 
+</main>
+                <footer id="footer">
+                    <div id="footer_deal">
+    
+        <a class="deal_link" target="_blank" href="https://github.com/Jiaxi-Huang" rel="external nofollow noopener" title="Github">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    
+        <a class="deal_link" href="mailto:huangjiaxi111@gmail.com" rel="external nofollow" title="Mail">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    
+    <img class="footer_mini_logo" src="/img/avatar.webp"
+        title="返回顶部" onclick="acrylic.toTop()">
+    
+        <a class="deal_link" target="_blank" href="https://open.spotify.com/user/316uiogi5afmgan63f4l3ovd6uxa" rel="external nofollow noopener" title="music">
+            <i class="fa-solid fa-music"></i>
+        </a>
+    
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com/507532901" rel="external nofollow noopener" title="bilibili">
+            <i class="fa-brands fa-bilibili"></i>
+        </a>
+    
+</div>    
+<div id="heo-footer">
+    
+        <div class="footer-group">
+            <h3 class="footer-title">导航</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" href="/archives/" title="文章归档" rel="noopener external nofollow noreferrer">文章归档</a>
+                
+                    <a class="footer-item" href="/categories/" title="文章分类" rel="noopener external nofollow noreferrer">文章分类</a>
+                
+                    <a class="footer-item" href="/tags/" title="文章标签" rel="noopener external nofollow noreferrer">文章标签</a>
+                
+                    <a class="footer-item" href="/link/" title="友链" rel="noopener external nofollow noreferrer">友链</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">Acrylic</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://acrylic.zhheo.com/" title="主题官网" rel="noopener external nofollow noreferrer noopener">主题官网</a>
+                
+                    <a class="footer-item" target="_blank" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic" title="Github" rel="noopener external nofollow noreferrer noopener">Github</a>
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">推荐友链</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                
+                    <a class="footer-item" target="_blank" href="https://akilar.top" title="Akilar" rel="noopener external nofollow noreferrer noopener">Akilar</a>
+                    
+            </div>
+        </div>
+    
+    
+</div>
+<div id="footer-section">
+    <div class="footer-section-links">
+        <div class="footer-section-left">
+            <div id="footer-section-tips">
+                <div class="copyright">©2023 - 2026 By 
+                    <a class="footer-section-link" href="/" rel="external nofollow">Melo</a>
+                    <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section-right">
+            <a class="footer-section-link" href="/rss/">订阅</a>
+            
+            <a class="footer-section-link cc" target="_blank" href="https://creativecommons.org/licenses/by/4.0/" title="cc协议">
+                <i class="fa-solid fa-closed-captioning"></i>
+            </a>
+        </div>
+    </div>
+</div>
+                </footer>
+            </div>
+         
+        <div>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    
+
+<script src="/lib/pjax.min.js"></script>
+
+
+
+<script src="/lib/snackbar.min.js"></script>
+
+
+    
+<script src="/lib/view-image.min.js"></script>
+
+
+
+<div id="js-pjax">
+    
+    
+        <script async src="https://npm.elemecdn.com/penndu@1.0.0/bsz.js"></script>
+     
+</div>
+
+
+    
+<script src="/js/extend/covercolor/web.js"></script>
+
+        
+
+
+    <script>
+  let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax'
+  ]
+  
+  const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+  })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+</script>
+    
+</div>
+        
+     
+        <div class="needEndHide" id="nav-music" onclick="acrylic.musicToggle()">
+    <div id="nav-music-hoverTips">音乐已暂停</div>
+    <meting-js id="1708664797" server="tencent" type="playlist" mutex="true"
+        preload="none" data-lrctype="0" order="random" theme="var(--heo-main)"></meting-js>
+</div>
+    
+    </body>
+</html>
+<script>const posts=["2026/01/31/基于语言与视觉模型的分层导航规划/","2026/01/27/基于单手柄单Lerobot机械臂训练VLA/","2026/01/24/基于IssacGym的人物交互RL仿真/","2026/01/19/基于SAM的分割与单目深度估计/","2026/01/19/旋转矩阵与李群李代数/","2026/01/15/VLN Simulator Habitat 环境安装与入门/","2024/08/18/docker-one/","2024/06/13/future-think/","2024/02/28/Django-two/","2023/12/04/git_multiusers/","2023/10/04/Django-one/","2023/09/05/java-note/","2023/07/06/how-to-write-in-hexo/"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>
